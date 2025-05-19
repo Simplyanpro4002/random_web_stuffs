@@ -27,6 +27,9 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+class IntroForm(FlaskForm):
+    submit = SubmitField('Begin Journey')
+
 class QuestionForm(FlaskForm):
     answer = RadioField('Answer', validators=[DataRequired()])
     submit = SubmitField('Next')
@@ -34,21 +37,41 @@ class QuestionForm(FlaskForm):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('introduction'))
     
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect(url_for('introduction'))
         flash('Invalid email or password')
     return render_template('login.html', form=form)
 
+@app.route('/introduction', methods=['GET', 'POST'])
+@login_required
+def introduction():
+    form = IntroForm()  # Use the simpler form for introduction
+    intro_text = '''You've just received a paw-sealed letter. It reads:
+"Dearest,
+If you are reading this, I, Grandmother Cat, have departed to the Great Catnap. My legacy is too grand for mere pawprints — I've crafted 7 Pawfolios, each for a different kind of feline. But only the right grandkitten may claim the one meant for them. Begin by understanding yourself, you must first remember who you are, before you decide who you might become."
+You are now on a journey to find out what kind of investor you are.'''
+    
+    if form.validate_on_submit():
+        session['current_question'] = 0
+        session['answers'] = {}
+        return redirect(url_for('index'))
+        
+    return render_template('question.html',
+                        question={'id': 0, 'narrative': intro_text, 'question_text': ''},
+                        form=form,
+                        progress=0,
+                        total_questions=len(QUESTIONS))
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
+    if current_user.is_authenticated:   
+        return redirect(url_for('introduction'))
     
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -60,8 +83,9 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Registration successful! Please login with your credentials.')
-        return redirect(url_for('login'))
+        # Log the user in after registration
+        login_user(user)
+        return redirect(url_for('introduction'))
     return render_template('register.html', form=form)
 
 @app.route('/logout')
@@ -73,28 +97,28 @@ def logout():
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
+    # If no current question, redirect to introduction
+    if 'current_question' not in session:
+        return redirect(url_for('introduction'))
+
     if request.args.get('action') == 'prev' and session.get('current_question', 0) > 0:
         session['current_question'] -= 1
         return redirect(url_for('index'))
-
-    if 'current_question' not in session:
-        session['current_question'] = 0
-        session['answers'] = {}
     
     if session['current_question'] >= len(QUESTIONS):
         return redirect(url_for('results'))
     
     question = QUESTIONS[session['current_question']]
     form = QuestionForm()
-    form.answer.choices = question['options']
-    
-    if str(question['id']) in session.get('answers', {}):
-        form.answer.data = session['answers'][str(question['id'])]
+    form.answer.choices = [(choice[0], choice[1]) for choice in question['options']]
     
     if form.validate_on_submit():
         session['answers'][str(question['id'])] = form.answer.data
         session['current_question'] += 1
         return redirect(url_for('index'))
+    
+    if str(question['id']) in session.get('answers', {}):
+        form.answer.data = session['answers'][str(question['id'])]
     
     return render_template('question.html', 
                          question=question,

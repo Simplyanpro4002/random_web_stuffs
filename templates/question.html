@@ -2,6 +2,23 @@
 
 {% block content %}
 <div class="question-container">
+    {% if question.id == 0 %}
+    <div class="card">
+        <div class="card-body">
+            <div class="question-content">
+                <div id="narrative" class="narrative-section active intro">
+                    <div class="narrative-text">
+                        {{ question.narrative|safe }}
+                    </div>
+                    <form method="POST" class="mt-4">
+                        {{ form.csrf_token }}
+                        {{ form.submit(class="btn btn-primary", value="Begin Journey") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
     <h1 class="text-center mb-5">Risk Assessment Questionnaire</h1>
     
     <div class="progress-wrapper mb-4">
@@ -27,14 +44,19 @@
                     <div class="narrative-text">
                         {{ question.narrative|safe }}
                     </div>
-                    <button id="continueBtn" class="btn btn-primary mt-4">Continue</button>
+                    <div class="narrative-buttons">
+                        <button id="continueBtn" class="btn btn-primary mt-4">Continue</button>
+                        {% if question.id > 1 %}
+                        <a href="{{ url_for('index', action='prev') }}" class="btn btn-outline-primary mt-4">Previous question</a>
+                        {% endif %}
+                    </div>
                 </div>
 
                 <!-- Question Section -->
                 <div id="questionSection" class="question-section">
                     <div class="question-header mb-4">
                         <span class="badge bg-light text-primary mb-2">Question {{ question.id }}</span>
-                        <h2 class="card-title h4 mb-3">{{ question.question_text }}</h2>
+                        <h2 class="card-title h4 mb-3">{{ question.question_text|safe }}</h2>
                     </div>
 
                     <form method="POST">
@@ -43,32 +65,159 @@
                             {% for option in form.answer %}
                             <label class="option">
                                 {{ option }}
-                                <span>{{ option.label.text }}</span>
+                                <span>{{ option.label.text|replace('\\', '')|safe }}</span>
                             </label>
                             {% endfor %}
                         </div>
                         
                         <div class="navigation-buttons">
-                            {% if progress > 0 %}
-                            <a href="{{ url_for('index', action='prev') }}" class="btn btn-outline-primary">
+                            {% if question.id != 0 %}
+                            <button type="button" id="prevBtn" class="btn btn-outline-primary" style="display: none;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                                 </svg>
                                 Previous
-                            </a>
+                            </button>
                             {% else %}
                             <div></div>
                             {% endif %}
-                            {{ form.submit(class="btn btn-primary") }}
+                            {{ form.submit(class="btn btn-primary", value="Next") }}
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 
 <style> 
+    /* Introduction page styles */
+    .narrative-section.intro {
+        padding: 3rem;
+        background: linear-gradient(135deg, #FFF9F9 0%, #FFE0E0 100%);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .narrative-section.intro::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 10% 10%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 90% 90%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+            url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0C17 0 15 2 15 5C15 8 17 10 20 10C23 10 25 8 25 5C25 2 23 0 20 0' fill='rgba(255,107,107,0.05)'/%3E%3C/svg%3E");
+        opacity: 0.5;
+        z-index: 0;
+    }
+
+    .narrative-section.intro .narrative-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--text-color);
+        white-space: pre-line;
+        margin-bottom: 2rem;
+        position: relative;
+        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.1);
+        text-align: left;
+        border-left: 4px solid var(--primary-color);
+        z-index: 1;
+    }
+
+    .narrative-section.intro .narrative-text::before {
+        content: "🐱";
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        font-size: 2.5rem;
+        background: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 2px 10px rgba(255, 107, 107, 0.2);
+        z-index: 2;
+    }
+
+    .narrative-section.intro .narrative-text::after {
+        content: "🐾";
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        font-size: 2rem;
+        transform: rotate(45deg);
+        opacity: 0.8;
+    }
+
+    .narrative-section.intro form {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .narrative-section.intro .btn-primary {
+        font-size: 1.1rem;
+        padding: 1rem 2.5rem;
+        background: var(--primary-color);
+        border: none;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .narrative-section.intro .btn-primary::before {
+        content: "🐾";
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .narrative-section.intro .btn-primary:hover {
+        transform: translateY(-3px);
+        padding-left: 3rem;
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        background: var(--primary-hover);
+    }
+
+    .narrative-section.intro .btn-primary:hover::before {
+        left: 15px;
+        opacity: 1;
+    }
+
+    /* Add a decorative cat tail cursor */
+    .narrative-section.intro {
+        cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 24C8 24 14 16 14 10C14 4 18 2 22 2C26 2 30 4 30 10C30 16 24 24 24 24' stroke='%23FF6B6B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 16 16, auto;
+    }
+
+    /* Style the letter text with a handwritten feel */
+    .narrative-section.intro .narrative-text {
+        font-family: 'Quicksand', cursive;
+        letter-spacing: 0.02em;
+    }
+
+    /* Add subtle paw print animations */
+    @keyframes pawFloat {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+        50% { transform: translateY(-10px) rotate(45deg); opacity: 0.4; }
+        100% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+    }
+
+    .narrative-section.intro .narrative-text::after {
+        animation: pawFloat 3s ease-in-out infinite;
+    }
+
+    /* Existing styles */
     .progress-wrapper {
         background: white;
         padding: 1.5rem;
@@ -201,22 +350,90 @@
     /* New styles for narrative and question sections */
     .narrative-section,
     .question-section {
-        opacity: 0;
         display: none;
-        transition: opacity 0.5s ease-in-out;
     }
 
     .narrative-section.active,
     .question-section.active {
-        opacity: 1;
         display: block;
     }
 
+    /* Enhanced narrative text styles */
     .narrative-text {
-        font-size: 1.1rem;
-        line-height: 1.6;
+        font-size: 1.2rem;
+        line-height: 1.8;
         color: var(--text-color);
         white-space: pre-line;
+        padding: 2rem;
+        background: #FFFFFF;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Style paragraphs within narrative text */
+    .narrative-text p {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Add emphasis to important parts */
+    .narrative-text strong {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    /* Style quotes or special messages */
+    .narrative-text blockquote {
+        border-left: 4px solid var(--primary-color);
+        margin: 1.5rem 0;
+        padding: 1rem 1.5rem;
+        background: #FFF9F9;
+        border-radius: 0 10px 10px 0;
+        font-style: italic;
+    }
+
+    /* Add some spacing for better content separation */
+    .narrative-section {
+        padding: 2rem 1rem;
+    }
+
+    /* Make the narrative section container more appealing */
+    .narrative-section.active {
+        background: linear-gradient(to bottom, #FFF9F9, #FFFFFF);
+        border-radius: 20px;
+        padding: 2rem;
+    }
+
+    /* Improve readability with better typography */
+    .narrative-text {
+        font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        letter-spacing: 0.01em;
+    }
+
+    /* Add visual markers for better content structure */
+    .narrative-text::before {
+        content: "📜";
+        display: block;
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+    }
+
+    /* Improve buttons layout in narrative section */
+    .narrative-buttons {
+        max-width: 800px;
+        margin: 2rem auto 0;
+        padding: 0 2rem;
+    }
+
+    /* Add responsive font sizing */
+    @media (max-width: 768px) {
+        .narrative-text {
+            font-size: 1.1rem;
+            padding: 1.5rem;
+        }
     }
 
     :root {
@@ -224,6 +441,27 @@
         --primary-hover: #FF5252;
         --border-color: #FFE0E0;
         --text-color: #4A4A4A;
+    }
+
+    /* Update section display styles */
+    .narrative-section,
+    .question-section {
+        display: none;
+    }
+
+    .narrative-section.active,
+    .question-section.active {
+        display: block;
+    }
+
+    /* Add fade-in animation for new content */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .question-container {
+        animation: fadeIn 0.5s ease-in-out;
     }
 </style>
 
@@ -233,21 +471,23 @@
         const progress = progressBar.getAttribute('data-progress');
         progressBar.style.width = progress + '%';
 
-        // Handle two-step display
+        // Handle section display
         const narrativeSection = document.getElementById('narrative');
         const questionSection = document.getElementById('questionSection');
         const continueBtn = document.getElementById('continueBtn');
+        const prevBtn = document.getElementById('prevBtn');
 
-        if (continueBtn) {
+        if (continueBtn && prevBtn) {
             continueBtn.addEventListener('click', function() {
-                narrativeSection.classList.remove('active');
-                setTimeout(() => {
-                    narrativeSection.style.display = 'none';
-                    questionSection.style.display = 'block';
-                    setTimeout(() => {
-                        questionSection.classList.add('active');
-                    }, 50);
-                }, 500);
+                narrativeSection.style.display = 'none';
+                questionSection.style.display = 'block';
+                prevBtn.style.display = 'block';
+            });
+
+            prevBtn.addEventListener('click', function() {
+                questionSection.style.display = 'none';
+                narrativeSection.style.display = 'block';
+                prevBtn.style.display = 'none';
             });
         }
     });
