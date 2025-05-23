@@ -272,11 +272,28 @@
     }
     
     .option input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #f4653b;
+        border-radius: 50%;
+        outline: none;
+        background: #fff;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 0 #f4653b;
         margin-right: 12px;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--border-color);
-        transition: all 0.2s ease;
+    }
+    
+    .option input[type="radio"]:checked {
+        background: radial-gradient(circle at center, #f4653b 60%, #fff 61%);
+        border-color: #f4653b;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f4653b;
+    }
+    .option input[type="radio"]:focus {
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f4653b;
     }
     
     .option span {
@@ -293,8 +310,9 @@
     }
 
     .option input[type="radio"]:checked {
-        border-color: var(--primary-color);
-        background-color: var(--primary-color);
+        border-color: #f4653b !important;
+        background-color: #f4653b !important;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f4653b !important;
     }
 
     .option:has(input[type="radio"]:checked) {
@@ -437,8 +455,8 @@
     }
 
     :root {
-        --primary-color: #FF6B6B;
-        --primary-hover: #FF5252;
+        --primary-color: #f4653b;
+        --primary-hover: #e55a30;
         --border-color: #FFE0E0;
         --text-color: #4A4A4A;
     }
@@ -462,6 +480,43 @@
 
     .question-container {
         animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .btn-primary {
+        background-color: #f4653b !important;
+        border-color: #f4653b !important;
+        color: #fff !important;
+    }
+
+    .btn-primary:hover, .btn-primary:focus {
+        background-color: #e55a30 !important;
+        border-color: #e55a30 !important;
+        color: #fff !important;
+    }
+
+    .btn-outline-primary {
+        color: #f4653b;
+        border-color: #f4653b;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #f4653b;
+        border-color: #f4653b;
+    }
+
+    .badge.bg-primary {
+        background-color: #f4653b !important;
+        color: #fff !important;
+        border: 1px solid #f4653b;
+    }
+    .badge.bg-light.text-primary {
+        color: #f4653b !important;
+        background-color: #fff !important;
+        border: 1px solid #f4653b;
+    }
+
+    .narrative-text strong.black-bold {
+        color: #222 !important;
     }
 </style>
 

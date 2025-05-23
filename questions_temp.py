@@ -2,8 +2,10 @@
 QUESTIONS = [
     {
         'id': 1,
-        'narrative': r'''As you settle into Grandma Cat's old study, you discover her worn journal. Flipping through the pages, you find an old question scrawled in her pawwriting:
-"Before a cat makes a move in the market, it's important to know how others see their instincts. The clowder never forgets…"
+        'narrative': r'''As you settle into <strong class="black-bold">Grandma Cat's old study</strong>, you discover <strong class="black-bold">her worn journal</strong>. Flipping through the pages, you find an <strong class="black-bold">old question</strong> scrawled in her pawwriting:
+
+<strong><em>"Before a cat makes a move in the market, it's important to know how others see their instincts. The clowder never forgets…"</em></strong>
+
 You think back to your fellow feline friends—those who've seen you leap, hide, and prowl.''',
         'question_text': 'How would your best cat friend describe your approach to risk?',
         'options': [
@@ -16,8 +18,14 @@ You think back to your fellow feline friends—those who've seen you leap, hide,
     {
         'id': 2,
         'narrative': r'''The next page of the journal says:
-"Sometimes things don't go as planned. What a cat does when their bowl runs empty says a lot about their comfort with uncertainty."
-An old memory came to your mind. There was one time you saved up for a trip to the Clawibbean Isles. But just days before departure, you were fired from your job.''',
+
+<strong><em>"Sometimes things don't go as planned. What a cat does when their bowl runs empty says a lot about their comfort with uncertainty."</em></strong>
+
+An old memory came to your mind. There was one time you saved up for a trip to the <strong class="black-bold">Clawibbean Isles</strong>. But just days before departure, <strong class="black-bold">you were fired from your job</strong>.
+
+You remember how your friends reacted:
+
+<strong><em>"You're a real risk-taker," they said. "You're always taking risks."</em></strong>''',
         'question_text': 'What did you do with your Clawibbean vacation plans?',
         'options': [
             ('a', "Canceled the trip — survival comes first."),
@@ -28,8 +36,9 @@ An old memory came to your mind. There was one time you saved up for a trip to t
     },
     {
         'id': 3,
-        'narrative': r'''As you keep reading Grandma's journal, you noticed a word that was repeated multiple times - Risk.
-"Every cat has a different reaction to the word," you remember her saying. "How you feel about risk shapes how you leap."''',
+        'narrative': r'''As you keep reading <strong class="black-bold">Grandma's journal</strong>, you noticed <strong class="black-bold">a word</strong> that was repeated multiple times - <strong class="black-bold">Risk</strong>.
+
+<strong><em>"Every cat has a different reaction to the word,"</em></strong> you remember her saying. <strong><em>"How you feel about risk shapes how you leap."</em></strong>''',
         'question_text': 'What comes to mind when you hear the word "risk"?',
         'options': [
             ('a', "Loss — it means giving up what you have."),
@@ -40,11 +49,15 @@ An old memory came to your mind. There was one time you saved up for a trip to t
     },
     {
         'id': 4,
-        'narrative': r'''You flip to the next page of Grandma's journal. Her pawwriting is a little more hurried, as if this entry came after a long night of trading tuna futures.
-"Every cat thinks they understand risk — until the market shifts. That's when instincts speak loudest."
-She writes about a moment in her own life, when whispers swirled through the clowder: real estate would be climbing, rare jewelry would be in demand, bond prices would fall, but government bonds are relatively safe.
+        'narrative': r'''You flip to <strong class="black-bold">the next page</strong> of Grandma's journal. Her pawwriting is a little more hurried, as if this entry came after a long night of trading tuna futures.
+
+<strong><em>"Every cat thinks they understand risk — until the market shifts. That's when instincts speak loudest."</em></strong>
+
+She writes about a moment in her own life, when whispers swirled through the clowder: <strong class="black-bold"><i>real estate would be climbing, rare jewelry would be in demand, bond prices would fall, but government bonds are relatively safe.</i></strong>
+
 You blink. That's familiar. Right now, most of your savings are sitting in those high-interest government bonds. The thought of shaking things up unsettles your fur.
-"When the winds change," Grandma wrote, "do you plant your paws… or leap?"''',
+
+<strong><em>"When the winds change," Grandma wrote, "do you plant your paws… or leap?"</em></strong>''',
         'question_text': 'What would you do in this situation?',
         'options': [
             ('a', "Hold the bonds"),
@@ -55,7 +68,8 @@ You blink. That's familiar. Right now, most of your savings are sitting in those
     },
     {
         'id': 5,
-        'narrative': r'''"Growth may outpace the slow crawl of inflation, but it comes with storms. Stability protects your fur in rough weather, but may leave you behind."
+        'narrative': r'''<strong><em>"Growth may outpace the slow crawl of inflation, but it comes with storms. Stability protects your fur in rough weather, but may leave you behind."</em></strong>
+
 You pause and consider what kind of hunter you are—or want to be.''',
         'question_text': 'Thinking about how your pawfolio might grow over time, which approach fits your goal best?',
         'options': [
@@ -67,10 +81,13 @@ You pause and consider what kind of hunter you are—or want to be.''',
     },
     {
         'id': 6,
-        'narrative': r'''The last folded page of Grandma's journal notes:
-"Gold is heavy, but decisions are heavier. Especially when it's your friend who asks you to dig."
-You close the journal and look out the window, where your longtime neighbor, Marmalade, is pacing in his yard. You've known him forever. He's an expert on underground things: gems, geology, gossip. And now, he's raising funds for a new gold mining venture in the southern cliffs.
-He says the payout could be huge — 50 to 100 times your investment — but there's only a 1-in-5 chance of success. If it flops, you lose it all.''',
+        'narrative': r'''The last <strong class="black-bold">folded page</strong> of Grandma's journal notes:
+
+<strong><em>"Gold is heavy, but decisions are heavier. Especially when it's your friend who asks you to dig."</em></strong>
+
+You close the journal and look out the window, where your longtime neighbor, <strong class="black-bold">Marmalade</strong>, is pacing in his yard. You've known him forever. He's an expert on underground things: <strong class="black-bold">gems, geology, gossip.</strong> And now, he's raising funds for <strong class="black-bold">a new gold mining venture</strong> in the southern cliffs.
+
+He says the payout could be huge — <strong class="black-bold">50 to 100 times your investment</strong> — but there's only a <strong class="black-bold">1-in-5 chance of success</strong>. If it flops, you lose it all.''',
         'question_text': "How much would you invest in Marmalade's risky but promising venture?",
         'options': [
             ('a', "Nothing — a 20% chance isn't worth losing my fur over."),
@@ -81,8 +98,9 @@ He says the payout could be huge — 50 to 100 times your investment — but the
     },
     {
         'id': 7,
-        'narrative': r'''With Grandma's journal closed for now, you step outside into the bustling alleys of Meowpolis. The world of investments is no longer just words on a page — it's time to make your first real moves.
-The first portion of your inheritance was given to you - $20,000.''',
+        'narrative': r'''With <strong class="black-bold">Grandma's journal</strong> closed for now, you step outside into the bustling alleys of <strong class="black-bold">Meowpolis</strong>. The world of investments is no longer just words on a page — it's time to make your first real moves.
+
+The first portion of your inheritance was given to you - <strong class="black-bold">$20,000</strong>.''',
         'question_text': 'What do you decide to do with the $20,000?',
         'options': [
             ('a', "Curl up safely in the bank's Deposit Den — guaranteed protection, slow growth."),
@@ -92,9 +110,11 @@ The first portion of your inheritance was given to you - $20,000.''',
     },
     {
         'id': 8,
-        'narrative': r'''Having made your first choice with the $20,000 inheritance, you wander through the vibrant Market District of Meowpolis.
-At the bustling Market Square, you bump into an old investor cat, who is your grandma's old friend. He chuckles, showing you his collection of stock certificates and trading cards.
-"So, young paw, how comfy are you with the wild world of stocks? It's a jungle out there—sometimes purrfect, sometimes perilous."''',
+        'narrative': r'''Having made your <strong class="black-bold">first choice</strong> with the <strong class="black-bold">$20,000 inheritance</strong>, you wander through the vibrant <strong class="black-bold">Market District of Meowpolis</strong>.
+
+At the bustling <strong class="black-bold">Market Square</strong>, you bump into an old investor cat, who is your grandma's old friend. He chuckles, showing you his collection of stock certificates and trading cards.
+
+<strong><em>"So, young paw, how comfy are you with the wild world of stocks? It's a jungle out there—sometimes purrfect, sometimes perilous."</em></strong>''',
         'question_text': 'How will you answer him?',
         'options': [
             ('a', "Not at all — the thought of those ups and downs makes my fur stand on end."),
@@ -104,9 +124,11 @@ At the bustling Market Square, you bump into an old investor cat, who is your gr
     },
     {
         'id': 9,
-        'narrative': r'''After your chat with the old cat in the Market Square, he paws you a worn booklet. "This," he purrs, "is the Ledger of Legendary Investments — a collection of true tales from the boldest cats in Meowpolis. Flip through, and see what kind of investor you are."
-Inside, four faded stories catch your eye. Each tells of a different cat and the outcome of their boldest leap. Some landed gracefully. Others… not so much.
-Whiskerstein asks, "If you had to pick one of these paths — knowing what you might gain or lose — which feels the most like you?"''',
+        'narrative': r'''After your chat with the old cat in the <strong class="black-bold">Market Square</strong>, he paws you a worn booklet. <strong><em>"This,"</em></strong> he purrs, <strong><em>"is the Ledger of Legendary Investments — a collection of true tales from the boldest cats in Meowpolis. Flip through, and see what kind of investor you are."</em></strong>
+
+Inside, <strong class="black-bold">four faded stories</strong> catch your eye. Each tells of a different cat and the outcome of their boldest leap. Some landed gracefully. Others… not so much.
+
+Whiskerstein asks, <strong><em>"If you had to pick one of these paths — knowing what you might gain or lose — which feels the most like you?"</em></strong>''',
         'question_text': 'Choose the investment tale that best fits your appetite for risk and reward:',
         'options': [
             ('a', "The Safe Stash — gained $200, risked nothing."),
@@ -117,11 +139,15 @@ Whiskerstein asks, "If you had to pick one of these paths — knowing what you m
     },
     {
         'id': 10,
-        'narrative': r'''After a long day at the market, you returned home. Waiting for you was a delivery package from Grandma's lawyer.
-Inside lies a crisp letter, paw-signed by Grandma herself. It reads:
-"Each of you seven grandkittens will face a moment of truth. To claim the full inheritance, you must prove who you are with your investment choices. One decision, one direction. No hedging your tail."
+        'narrative': r'''After a long day at the market, you returned home. Waiting for you was a delivery package from <strong class="black-bold">Grandma's lawyer</strong>.
+
+Inside lies <strong class="black-bold">a crisp letter</strong>, paw-signed by <strong class="black-bold">Grandma herself</strong>. It reads:
+
+<strong><em>"Each of you seven grandkittens will face a moment of truth. To claim the full inheritance, you must prove who you are with your investment choices. One decision, one direction. No hedging your tail."</em></strong>
+
 A note is attached with a final challenge:
-"Here is $100,000. Choose one way to invest it. Choose wisely."''',
+
+<strong><em>"Here is $100,000. Choose one way to invest it. Choose wisely."</em></strong>''',
         'question_text': 'How would you invest your 100,000 inheritance from Grandma Purrl?',
         'options': [
             ('a', "In the Snuggle Bank — a safe savings account or money market fund. Calm, cool, and curl-up secure."),
@@ -132,9 +158,11 @@ A note is attached with a final challenge:
     },
     {
         'id': 11,
-        'narrative': r'''Just as you thought that was everything, you hear a soft "thunk" — a smaller envelope slides out of the larger package. It's marked with a paw-embossed seal and a faint scent of catnip cookies.
-You tear it open, and inside is a shorter letter. Grandma's writing is shakier, but just as firm:
-"One big decision shows your claws. But real investing? That's in the details. If you had $20,000 instead — not for one path, but for many — how would you divide them?"''',
+        'narrative': r'''Just as you thought that was everything, you hear a soft <strong class="black-bold">"thunk"</strong> — a smaller envelope slides out of the larger package. It's marked with a paw-embossed seal and a faint scent of catnip cookies.
+
+You tear it open, and inside is <strong class="black-bold">a shorter letter</strong>. Grandma's writing is shakier, but just as firm:
+
+<strong><em>"One big decision shows your claws. But real investing? That's in the details. If you had $20,000 instead — not for one path, but for many — how would you divide them?"</em></strong>''',
         'question_text': 'What would be your answer?',
         'options': [
             ('a', "60% low-risk, 30% medium-risk, 10% high-risk — You'd rather nap than leap without a net."),
@@ -144,9 +172,11 @@ You tear it open, and inside is a shorter letter. Grandma's writing is shakier, 
     },
     {
         'id': 12,
-        'narrative': r'''A few days later, you found another letter in your mail box, sent from Grandma's lawyer. It was a sealed envelope pawmarked by Grandma herself.
-"You've been awarded 1,000 whisker-coins for your progress so far," it reads.
-"Now choose how you want to receive this gift."''',
+        'narrative': r'''A few days later, you found <strong class="black-bold">another letter</strong> in your mail box, sent from Grandma's lawyer. It was a sealed envelope pawmarked by Grandma herself.
+
+<strong><em>"You've been awarded 1,000 whisker-coins for your progress so far,"</em></strong> it reads.
+
+<strong><em>"Now choose how you want to receive this gift."</em></strong>''',
         'question_text': 'You must decide:',
         'options': [
             ('a', "Take a guaranteed $500. Safe, soft, and sure."),
@@ -155,7 +185,7 @@ You tear it open, and inside is a shorter letter. Grandma's writing is shakier, 
     },
     {
         'id': 13,
-        'narrative': r'''Just as you think the journey is over, the markets of Meow Street — once booming — now down 20% in just a whisker's time.''',
+        'narrative': r'''Just as you think the journey is over, the markets of <strong class="black-bold">Meow Street</strong> — once booming — now <strong class="black-bold">down 20%</strong> in just a whisker's time.''',
         'question_text': 'If your portfolio dropped by 20% in a short stretch of moon cycles, how would you respond?',
         'options': [
             ('a', "Stay the course — no change. Grandma rode storms, and so will I."),
@@ -166,7 +196,7 @@ You tear it open, and inside is a shorter letter. Grandma's writing is shakier, 
     },
     {
         'id': 14,
-        'narrative': r'''Your holdings have earned a bonus of $2,000. To process your reward, a service fee must be paid.''',
+        'narrative': r'''Your holdings have earned a bonus of <strong class="black-bold">$2,000</strong>. To process your reward, <strong class="black-bold">a service fee</strong> must be paid.''',
         'question_text': 'You must decide how to handle this fee:',
         'options': [
             ('a', "Pay a guaranteed $500 — a sure, fixed toll to receive your reward."),
@@ -175,9 +205,11 @@ You tear it open, and inside is a shorter letter. Grandma's writing is shakier, 
     },
     {
         'id': 15,
-        'narrative': r'''After all the choices, tests, and twists, your journey leads you to the meeting of the 7 heirs with Grandma's lawyer, who was entrusted by her to assess her heirs.
-The seven grandkittens gather in the grand hall, the air thick with excitement and a hint of friendly rivalry. The lawyer cat steps forward, holding the final challenge in his paws.
-"To prove your true investment spirit, each of you must make one last choice. The prize is yours to claim — but the path you pick will say much about your courage and wisdom."''',
+        'narrative': r'''After all the choices, tests, and twists, your journey leads you to the meeting of the <strong class="black-bold">7 heirs</strong> with <strong class="black-bold">Grandma's lawyer</strong>, who was entrusted by her to assess her heirs.
+
+The seven grandkittens gather in the grand hall, the air thick with excitement and a hint of friendly rivalry. The lawyer cat steps forward, holding <strong class="black-bold">the final challenge</strong> in his paws.
+
+<strong><em>"To prove your true investment spirit, each of you must make one last choice. The prize is yours to claim — but the path you pick will say much about your courage and wisdom."</em></strong>''',
         'question_text': 'Which prize do you choose?',
         'options': [
             ('a', 'A guaranteed $1,000 — steady and sure, like a warm spot by the fire.'),

@@ -52,10 +52,10 @@ def login():
 @login_required
 def introduction():
     form = IntroForm()  # Use the simpler form for introduction
-    intro_text = '''You've just received a paw-sealed letter. It reads:
-"Dearest,
-If you are reading this, I, Grandmother Cat, have departed to the Great Catnap. My legacy is too grand for mere pawprints — I've crafted 7 Pawfolios, each for a different kind of feline. But only the right grandkitten may claim the one meant for them. Begin by understanding yourself, you must first remember who you are, before you decide who you might become."
-You are now on a journey to find out what kind of investor you are.'''
+    intro_text = '''You\'ve just received a <strong class="black-bold">paw-sealed letter</strong>. It reads:<br>
+<strong><em>\"Dearest,
+If you are reading this, I, Grandmother Cat, have departed to the Great Catnap. My legacy is too grand for mere pawprints — I\'ve crafted 7 Pawfolios, each for a different kind of feline. But only the right grandkitten may claim the one meant for them. Begin by understanding yourself, you must first remember who you are, before you decide who you might become.\"</em></strong><br>
+You are now on a journey to find out <strong class="black-bold">what kind of investor you are.</strong>'''
     
     if form.validate_on_submit():
         session['current_question'] = 0
