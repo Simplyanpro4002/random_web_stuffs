@@ -6,7 +6,7 @@ QUESTIONS = [
 
 <strong><em>"Before a cat makes a move in the market, it's important to know how others see their instincts. The clowder never forgets…"</em></strong>
 
-You think back to your fellow feline friends—those who've seen you leap, hide, and prowl.abcd''',
+You think back to your fellow feline friends—those who've seen you leap, hide, and prowl.''',
         'question_text': 'How would your best cat friend describe your approach to risk?',
         'options': [
             ('a', "A real gambler — you leap before you even check where you'll land."),
