@@ -9,10 +9,11 @@ from scoring import calculate_raw_score, calculate_standard_score, get_risk_prof
 from flask_migrate import Migrate
 from questions_temp import QUESTIONS
 import os
+import requests
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key in production
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///risk_assessment.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/risk_assessment.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize extensions
@@ -120,6 +121,22 @@ def index():
     if str(question['id']) in session.get('answers', {}):
         form.answer.data = session['answers'][str(question['id'])]
     
+    # Add image paths for the slideshow
+    if question['id'] > 0:  # Skip for introduction page
+        image_paths = []
+        i = 1
+        while True:
+            # Construct the full path to the image file
+            image_filename = f'image_{i}.png'
+            image_path = os.path.join('static', 'images', f'question_{question["id"]}', image_filename)
+            # Check if the image exists using os.path.exists
+            if not os.path.exists(image_path):
+                break
+            # If image exists, add its URL path
+            image_paths.append(url_for('static', filename=f'images/question_{question["id"]}/{image_filename}'))
+            i += 1
+        question['image_paths'] = image_paths
+    
     return render_template('question.html', 
                          question=question,
                          form=form,
@@ -158,6 +175,10 @@ def results():
         standard_score=standard_score,
         risk_profile=risk_profile
     )
+
+@app.route('/image-text-overlay', methods=['GET'])
+def image_text_overlay():
+    return render_template('image_text_overlay.html')
 
 if __name__ == '__main__':
     app.run(debug=True) 
