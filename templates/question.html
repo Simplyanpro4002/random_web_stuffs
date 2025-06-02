@@ -46,9 +46,9 @@
                                 <div class="visual-novel-slide {% if loop.first %}active{% endif %}">
                                     <img src="{{ image_path }}" alt="Visual Novel Scene {{ loop.index }}" class="visual-novel-image">
                                     {% if loop.last %}
-                                    <div class="image-text-overlay question-overlay" style="top: 82%;">
-                                        <div>{{ question.question_text|safe }}</div>
-                                        <form method="POST" style="margin-top: 2rem;">
+                                    <div class="image-text-overlay question-overlay" style="top: 80%;">
+                                        <div style="padding-left: 0.5rem; padding-right: 0.5rem;">{{ question.question_text|safe }}</div>
+                                        <form method="POST" style="margin-top: 1rem;">
                                             {{ form.csrf_token }}
                                             <div class="options">
                                                 {% for option in form.answer %}
@@ -245,13 +245,13 @@
     
     .options {
         display: grid;
-        gap: 1rem;
+        gap: 0.5rem;
         margin-bottom: 2rem;
     }
     
     .question-header {
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 1rem;
+        border-bottom: 0.5px solid var(--border-color);
+        padding-bottom: 0.5rem;
     }
     
     .badge {
@@ -262,7 +262,7 @@
     .option {
         display: flex;
         align-items: center;
-        padding: 1.25rem;
+        padding: 1.25rem 0.5rem;
         border: 2px solid var(--border-color);
         border-radius: 15px;
         cursor: pointer;
@@ -514,8 +514,8 @@
         position: relative;
         width: 100%;
         margin: 0;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
         padding-top: 25px;
         padding-bottom: 20px;
         overflow: hidden;
@@ -649,14 +649,6 @@
         
     }
 
-    .options-overlay {
-        font-size: 22px;
-        line-height: 1.6;
-        max-width: 70%;
-        padding: 20px;
-        text-align: left;
-    }
-
     .option-text {
         margin: 8px 0;
         padding: 8px;
@@ -684,6 +676,10 @@
     .right-arrow-btn {
         position: absolute;
         right: 0;
+    }
+
+    .image-text-overlay .options .option span {
+        font-size: 20px; /* Adjust size as needed */
     }
 </style>
 
