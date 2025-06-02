@@ -46,7 +46,7 @@
                                 <div class="visual-novel-slide {% if loop.first %}active{% endif %}">
                                     <img src="{{ image_path }}" alt="Visual Novel Scene {{ loop.index }}" class="visual-novel-image">
                                     {% if loop.last %}
-                                    <div class="image-text-overlay question-overlay" style="top: 80%;">
+                                    <div class="image-text-overlay question-overlay" style="top: 75%;">
                                         <div style="padding-left: 0.5rem; padding-right: 0.5rem;">{{ question.question_text|safe }}</div>
                                         <form method="POST" style="margin-top: 1rem;">
                                             {{ form.csrf_token }}
@@ -525,7 +525,7 @@
     .visual-novel-slideshow {   
         position: relative;
         width: 100%;
-        height: 1000px;
+        height: 1100px;
         overflow: hidden;
         border-radius: 20px;
     }
@@ -550,7 +550,7 @@
 
     .visual-novel-image {
         width: 100%;
-        height: 100%;
+        /*height: 100%;*/
         object-fit: cover;
         object-position: center;
         border-radius: 20px;
