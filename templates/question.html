@@ -81,7 +81,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="question-arrow-controls d-flex justify-content-between align-items-center" style="position: absolute; left: 0; right: 0; bottom: 20px; width: 100%; pointer-events: none;">
+                    <div class="question-arrow-controls d-flex justify-content-between align-items-center" style="position: absolute; left: 0; right: 0; bottom: 600px; width: 100%; pointer-events: none;">
                         <a href="{{ url_for('index', action='prev') }}" class="arrow-btn left-arrow-btn" style="pointer-events: auto; margin-left: 20px;">
                             <span style="font-size: 2rem; background: #FF6B6B; color: white; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(255,107,107,0.2);">&#8592;</span>
                         </a>
@@ -262,14 +262,11 @@
     .option {
         display: flex;
         align-items: center;
-        padding: 1.25rem 0.5rem;
-        border: 2px solid var(--border-color);
+        padding: 1rem 0.5rem;
+        border: 2px solid var(--border-color-dark);
         border-radius: 15px;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        background: linear-gradient(to right, white 50%, #FFF0EB 50%);
-        background-size: 200% 100%;
-        background-position: left bottom;
         position: relative;
     }
     
@@ -352,7 +349,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
     .btn {
@@ -459,7 +456,8 @@
         --primary-color: #f4653b;
         --primary-hover: #e55a30;
         --border-color: #FFE0E0;
-        --text-color: #4A4A4A;
+        --text-color: #3a3a3a;
+        --border-color-dark: #3a3a3a;
     }
 
     /* Add fade-in animation for new content */
@@ -624,7 +622,7 @@
         transform: translate(-50%, -50%);
         font-family: 'Schoolbell', cursive;
         font-size: 35px;
-        color: #3a3a3a;
+        color: #634631;
         text-align: center;
         width: 100%;
         padding: 20px;
@@ -679,7 +677,7 @@
     }
 
     .image-text-overlay .options .option span {
-        font-size: 20px; /* Adjust size as needed */
+        font-size: 21px; /* Adjust size as needed */
     }
 </style>
 
