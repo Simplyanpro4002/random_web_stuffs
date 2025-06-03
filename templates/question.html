@@ -7,9 +7,7 @@
         <div class="card-body">
             <div class="question-content">
                 <div id="narrative" class="narrative-section active intro">
-                    <div class="narrative-text">
-                        {{ question.narrative|safe }}
-                    </div>
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Purr-fect Risk Assessment Logo" class="intro-logo">
                     <form method="POST" class="mt-4">
                         {{ form.csrf_token }}
                         {{ form.submit(class="btn btn-primary", value="Begin Journey") }}
@@ -327,7 +325,7 @@
     .option input[type="radio"]:checked {
         border-color: #f4653b !important;
         background-color: #f4653b !important;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3b47f4 !important;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #FF5252 !important;
     }
 
     .option:has(input[type="radio"]:checked) {
@@ -678,6 +676,15 @@
 
     .image-text-overlay .options .option span {
         font-size: 21px; /* Adjust size as needed */
+    }
+
+    .intro-logo {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto 2rem auto; /* Center the image and add space below */
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 </style>
 
