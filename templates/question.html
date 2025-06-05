@@ -44,185 +44,145 @@
                             <div class="visual-novel-slide {% if loop.first %}active{% endif %}">
                                 <img src="{{ image_path }}" alt="Visual Novel Scene {{ loop.index }}"
                                     class="visual-novel-image">
-                                {% if loop.last %}
-                                <div class="image-text-overlay question-overlay">
-                                    <div style="padding-left: 0.5rem; padding-right: 0.5rem;">{{
-                                        question.question_text|safe }}</div>
-                                    <form method="POST" style="margin-top: 1rem;">
-                                        {{ form.csrf_token }}
-                                        <div class="options">
-                                            {% for option in form.answer %}
-                                            <label class="option">
-                                                {{ option }}
-                                                <span>{{ option.label.text|replace('\\', '')|safe }}</span>
-                                            </label>
-                                            {% endfor %}
-                                        </div>
-                                    </form>
-                                </div>
-                                
-                                {% endif %}
-                                {% if question.id == 1 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Grandma Cat</span> <br>
-                                    "Dearest, <br>
-                                    If you are reading this, I, Grandmother Cat, <br> 
-                                    have departed to the Great Catnap."
-                                </div>
-                                {% endif %}
-                                {% if question.id == 1 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Grandma Cat</span> <br>
-                                    "Let me show you my legacy — The 7 Pawfolios that I've crafted for each of my grandkittens."
-                                </div>
-                                {% endif %}
-                                {% if question.id == 1 and loop.index == 3 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Grandma Cat</span> <br>
-                                    "Only the right grandkitten may claim the one meant for them."
-                                </div>
-                                {% endif %}
-                                {% if question.id == 1 and loop.index == 4 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    It's time to find out what kind of feline you really are
-                                </div>
-                                
-                                {% endif %}
-                                {% if question.id == 2 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    As you read the next page, an old memory came to your mind...
-                                </div>
-                                {% endif %}
-                                {% if question.id == 2 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    There was one time you were fired from your job right before your vacation.
-                                </div>
-                                
-                                {% endif %}
-                                {% if question.id == 4 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    Grandma wrote about a time when rumors spread: real estate would rise, rare jewels gain value, bonds drop—yet government bonds stayed safe.
-                                </div>
-                                {% endif %}
-                                {% if question.id == 4 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    Right now, most of your savings are sitting in those high-interest government bonds.
-                                </div>
+                                <div class="slide-text-content">
+                                    {% if question.id == 1 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Grandma Cat</span> <br>
+                                        "Dearest, <br>
+                                        If you are reading this, I, Grandmother Cat, <br> 
+                                        have departed to the Great Catnap."
+                                    </div>
+                                    {% elif question.id == 1 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Grandma Cat</span> <br>
+                                        "Let me show you my legacy — The 7 Pawfolios that I've crafted for each of my grandkittens."
+                                    </div>
+                                    {% elif question.id == 1 and loop.index == 3 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Grandma Cat</span> <br>
+                                        "Only the right grandkitten may claim the one meant for them."
+                                    </div>
+                                    {% elif question.id == 1 and loop.index == 4 %}
+                                    <div class="image-text-overlay">
+                                        It's time to find out what kind of feline you really are
+                                    </div>
+                                    {% elif question.id == 2 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        As you read the next page, an old memory came to your mind...
+                                    </div>
+                                    {% elif question.id == 2 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        There was one time you were fired from your job right before your vacation.
+                                    </div>
+                                    {% elif question.id == 4 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Grandma wrote about a time when rumors spread: real estate would rise, rare jewels gain value, bonds drop—yet government bonds stayed safe.
+                                    </div>
+                                    {% elif question.id == 4 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        Right now, most of your savings are sitting in those high-interest government bonds.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        You continued reading until you reached the very end of Grandma's journal.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        Closing the journal, you are now ready to explore yourself in the world of real investments.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 3 %}
+                                    <div class="image-text-overlay">
+                                        As you look out the window, you see your longtime neighbor.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 4 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Neighbor</span> <br>
+                                        "Join my plan and the payout could be huge — 50 to 100 times your investment — but there's only a 20% chance of success."
+                                    </div>
+                                    {% elif question.id == 7 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        The next day, you received $20,000 as the first challenge that Grandma Cat assigned to the grandkittens in her last will.
+                                    </div>
+                                    {% elif question.id == 8 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        At the market, you bump into an old investor cat, whose is your grandma's old friend. 
+                                    </div>
+                                    {% elif question.id == 8 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        "How comfy are you with the wild world of stocks?"
+                                    </div>
+                                    {% elif question.id == 9 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        "This is a collection of true tales from the boldest investor cats."
+                                    </div>
+                                    {% elif question.id == 9 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        "If you had to pick one of these paths, which feels the most like you?"
+                                    </div>
+                                    {% elif question.id == 10 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        After a long day at the market, you returned home. Waiting for you was a delivery package from Grandma's lawyer.
+                                    </div>
+                                    {% elif question.id == 11 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Just as you thought that was everything, you hear a soft "thunk" — a smaller envelope slides out of the package.
+                                    </div>
+                                    {% elif question.id == 12 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        A few days later, you found another letter in your mail box, sent from Grandma's lawyer.
+                                    </div>
+                                    {% elif question.id == 13 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        A few days later, the market shifts.
+                                    </div>
+                                    {% elif question.id == 14 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Your holdings have earned a bonus of $2,000. To process your reward, a service fee must be paid.
+                                    </div>
+                                    {% elif question.id == 15 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Finally, your journey leads you to the meeting of the 7 heirs with Grandma's lawyer, who was entrusted by her to assess her heirs.
+                                    </div>
+                                    {% elif question.id == 15 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Lawyer Cat</span> <br>
+                                        "Each of you must make one last choice."
+                                    </div>
+                                    {% endif %}
 
-                                {% endif %}
-                                {% if question.id == 6 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    You continued reading until you reached the very end of Grandma's journal.
+                                    {% if loop.last %}
+                                    <div class="image-text-overlay question-overlay">
+                                        <div style="padding-left: 0.5rem; padding-right: 0.5rem;">{{ question.question_text|safe }}</div>
+                                        <form method="POST" style="margin-top: 1rem;">
+                                            {{ form.csrf_token }}
+                                            <div class="options">
+                                                {% for option in form.answer %}
+                                                <label class="option">
+                                                    {{ option }}
+                                                    <span>{{ option.label.text|replace('\\', '')|safe }}</span>
+                                                </label>
+                                                {% endfor %}
+                                            </div>
+                                        </form>
+                                    </div>
+                                    {% endif %}
                                 </div>
-                                {% endif %}
-                                {% if question.id == 6 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    Closing the journal, you are now ready to explore yourself in the world of real investments.
-                                </div>
-                                {% endif %}
-                                {% if question.id == 6 and loop.index == 3 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    As you look out the window, you see your longtime neighbor.
-                                </div>
-                                {% endif %}
-                                {% if question.id == 6 and loop.index == 4 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Neighbor</span> <br>
-                                    "Join my plan and the payout could be huge — 50 to 100 times your investment — but there’s only a 20% chance of success."
-                                </div>
-                                
-                            
-
-                                {% endif %}
-                                {% if question.id == 7 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    The next day, you received $20,000 as the first challenge that Grandma Cat assigned to the grandkittens in her last will.
-                                </div>
-                                
-                                {% endif %}
-                                {% if question.id == 8 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    At the market, you bump into an old investor cat, whose is your grandma’s old friend. 
-                                </div>
-                                {% endif %}
-                                {% if question.id == 8 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Old Investor Cat</span> <br>
-                                    "How comfy are you with the wild world of stocks?"
-                                </div>
-
-                                {% endif %}
-                                {% if question.id == 9 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Old Investor Cat</span> <br>
-                                    "This is a collection of true tales from the boldest investor cats."
-                                </div>
-                                {% endif %}
-                                {% if question.id == 9 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Old Investor Cat</span> <br>
-                                    “If you had to pick one of these paths, which feels the most like you?”
-                                </div>
-
-                                {% endif %}
-                                {% if question.id == 10 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    After a long day at the market, you returned home. Waiting for you was a delivery package from Grandma's lawyer.
-                                </div>
-
-                                {% endif %}
-                                {% if question.id == 11 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    Just as you thought that was everything, you hear a soft “thunk” — a smaller envelope slides out of the package.
-                                </div>
-                                
-                                {% endif %}
-                                {% if question.id == 12 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    A few days later, you found another letter in your mail box, sent from Grandma’s lawyer.
-                                </div>
-
-                                {% endif %}
-                                {% if question.id == 13 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    A few days later, the market shifts.
-                                </div>
-                                
-                                {% endif %}
-                                {% if question.id == 14 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    Your holdings have earned a bonus of $2,000. To process your reward, a service fee must be paid.
-                                </div>
-
-                                {% endif %}
-                                {% if question.id == 15 and loop.index == 1 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    Finally, your journey leads you to the meeting of the 7 heirs with Grandma’s lawyer, who was entrusted by her to assess her heirs.
-                                </div>
-                                {% endif %}
-                                {% if question.id == 15 and loop.index == 2 %}
-                                <div class="image-text-overlay" style="top: 75%;">
-                                    <span class="character-overlay">Lawyer Cat</span> <br>
-                                    "Each of you must make one last choice."
-                                </div>
-                                
-                                {% endif %}
-
                             </div>
                             {% endfor %}
                             {% endif %}
                         </div>
                     </div>
-                    <div class="question-arrow-controls d-flex justify-content-between align-items-center"
-                        style="position: absolute; left: 0; right: 0; bottom: 625px; width: 100%; pointer-events: none;">
-                        <a href="{{ url_for('index', action='prev') }}" class="arrow-btn left-arrow-btn"
-                            style="pointer-events: auto; margin-left: 30px;">
+                    <div class="question-arrow-controls d-flex justify-content-between align-items-center">
+                        <a href="{{ url_for('index', action='prev') }}" class="arrow-btn left-arrow-btn">
                             <span
                                 style="font-size: 2rem; background: #f4653b; color: white; border-radius: 25%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">&#8592;</span>
                         </a>
                         <a href="#"
                             onclick="document.querySelector('.question-content form button[type=submit]').click(); return false;"
-                            class="arrow-btn right-arrow-btn" style="pointer-events: auto; margin-right: 30px;">
+                            class="arrow-btn right-arrow-btn">
                             <span
                                 style="font-size: 2rem; background: #f4653b; color: white; border-radius: 25%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">&#8594;</span>
                         </a>
@@ -409,28 +369,19 @@
     .option {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         padding: 1rem 0.5rem;
         border: 2px solid var(--border-color-dark);
         border-radius: 15px;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+        background: transparent;
     }
 
     .option:hover {
         border-color: var(--primary-color);
         transform: translateY(-2px) scale(1.01);
-        background-position: right bottom;
-    }
-
-    .option:hover::before {
-        content: "😺";
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 0.7;
-        font-size: 1.2rem;
     }
 
     .option input[type="radio"] {
@@ -441,18 +392,18 @@
         border: 2px solid #f4653b;
         border-radius: 50%;
         outline: none;
-        background: #fff;
+        background: transparent;
         transition: border-color 0.2s, box-shadow 0.2s;
         position: relative;
         cursor: pointer;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 0 #f4653b;
+        box-shadow: 0 0 0 2px transparent, 0 0 0 0 #f4653b;
         margin-right: 12px;
     }
 
     .option input[type="radio"]:checked {
-        background: radial-gradient(circle at center, #f4653b 60%, #fff 61%);
+        background: radial-gradient(circle at center, #f4653b 60%, transparent 61%);
         border-color: #f4653b;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f4653b;
+        box-shadow: 0 0 0 2px transparent, 0 0 0 4px #f4653b;
     }
 
     .option input[type="radio"]:focus {
@@ -461,9 +412,11 @@
 
     .option span {
         margin-left: 8px;
-        font-size: 1rem;
+        font-size: 1.5rem;
         color: var(--text-color);
         transition: all 0.3s ease;
+        text-align: left;
+        flex: 1;
     }
 
     /* Selected state */
@@ -479,7 +432,7 @@
     }
 
     .option:has(input[type="radio"]:checked) {
-        background: #FFF0EB;
+        background: rgba(255, 240, 235, 0.3);
         border-color: var(--primary-color);
         box-shadow: 0 4px 12px rgba(255, 107, 107, 0.1);
     }
@@ -665,10 +618,7 @@
         position: relative;
         width: 100%;
         margin: 0;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 25px;
-        padding-bottom: 20px;
+        padding: 25px 5px 20px;
         overflow: hidden;
         border-radius: 20px;
     }
@@ -676,7 +626,7 @@
     .visual-novel-slideshow {
         position: relative;
         width: 100%;
-        height: 1100px;
+        height: auto;
         overflow: hidden;
         border-radius: 20px;
         display: flex;
@@ -684,147 +634,65 @@
     }
 
     .visual-novel-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
-        height: 100%;
+        height: auto;
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         border-radius: 20px;
     }
 
     .visual-novel-slide.active {
         opacity: 1;
+        display: flex;
     }
 
     .visual-novel-image {
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: contain;
         object-position: top;
         border-radius: 20px;
     }
 
-    .visual-novel-controls {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: transparent;
-        padding: 0.75rem 1.5rem;
-        border-radius: 25px;
-    }
-
-    .visual-novel-prev,
-    .visual-novel-next {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(5px);
-    }
-
-    .visual-novel-prev {
-        background: rgba(244, 101, 59, 0.9) !important;
-        border: none !important;
-        color: white !important;
-    }
-
-    .visual-novel-next {
-        background: rgba(244, 101, 59, 0.9) !important;
-        border: none !important;
-        color: white !important;
-    }
-
-    .visual-novel-prev:hover {
-        background: rgba(244, 101, 59, 1) !important;
-    }
-
-    .visual-novel-next:hover {
-        background: rgba(244, 101, 59, 1) !important;
-        transform: translateY(-2px);
-    }
-
-    .visual-novel-prev:disabled,
-    .visual-novel-next:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    /* Question section transition */
-    .question-section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.5s ease-in-out;
-        padding: 2rem;
-    }
-
-    .question-section.show {
-        opacity: 1;
-        transform: translateY(0);
+    .slide-text-content {
+        width: 100%;    
+        position: relative;
     }
 
     .image-text-overlay {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        position: relative;
+        width: 100%;
         font-family: 'Schoolbell', cursive;
         font-size: 30px;
         color: #3a3a3a;
         text-align: center;
-        width: 100%;
-        padding: 20px;
+        padding: 40px 60px;
         box-sizing: border-box;
         text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-        z-index: 1;
-        top: 72%
+        background: url("{{ url_for('static', filename='images/chat_frame.png') }}") no-repeat;
+        background-size: 100% 100%;
+        min-height: 600px;
+        align-content: center;
+        margin-bottom: 20px;
     }
 
     .character-overlay {
-        color: #7e5b41;    
+        color: #7e5b41;
+        font-weight: bold;
     }
 
-    /* @media (max-width: 768px) {
-        .image-text-overlay {
-            top: 50%;
-        }
-    } */
-
-    /* Styles for moved question elements within narrative */
-    .narrative-question-elements {
-        margin-top: 2rem;
-        /* Add space above the question */
-        margin-bottom: 1rem;
-        /* Add space below the question */
-        text-align: center;
-        /* Center the elements */
-    }
-
-    /* New styles for question and options overlay */
-    .question-overlay {
-        font-size: 25px;
-        line-height: 1.4;
-        max-width: 80%;
-        padding: 20px;
-
-    }
-
-    .option-text {
-        margin: 8px 0;
-        padding: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .option-text:hover {
-        transform: translateX(10px);
-        text-shadow: 2px 2px 4px rgba(244, 101, 59, 0.5);
+    .question-arrow-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 20px 0;
+        padding: 0 30px;
     }
 
     .arrow-btn {
@@ -838,19 +706,27 @@
         transform: scale(1.08);
     }
 
-    .left-arrow-btn {
-        position: absolute;
-        left: 0;
+    .question-overlay {
+        background: url("{{ url_for('static', filename='images/chat_frame.png') }}") no-repeat;
+        background-size: 100% 100%;
+        box-shadow: none;
     }
 
-    .right-arrow-btn {
-        position: absolute;
-        right: 0;
+    .options {
+        display: grid;
+        gap: 0.5rem;
+        margin: 2rem auto;
+        max-width: 80%;
     }
 
-    .image-text-overlay .options .option span {
-        font-size: 21px;
-        /* Adjust size as needed */
+    /* Styles for moved question elements within narrative */
+    .narrative-question-elements {
+        margin-top: 2rem;
+        /* Add space above the question */
+        margin-bottom: 1rem;
+        /* Add space below the question */
+        text-align: center;
+        /* Center the elements */
     }
 
     .intro-logo {
@@ -874,17 +750,60 @@
         const slideshow = document.querySelector('.visual-novel-slideshow');
         if (slideshow) {
             const slides = slideshow.querySelectorAll('.visual-novel-slide');
-            const questionSection = document.querySelector('.question-section');
             let currentSlide = 0;
 
             function showSlide(index) {
                 slides.forEach(slide => slide.classList.remove('active'));
-                slides[index].classList.add('active');
+                if (slides[index]) {
+                    slides[index].classList.add('active');
+                }
                 currentSlide = index;
             }
 
             // Initialize first slide
             showSlide(0);
+
+            // Function to check if an option is selected
+            function isOptionSelected() {
+                const radioInputs = document.querySelectorAll('input[type="radio"]');
+                return Array.from(radioInputs).some(input => input.checked);
+            }
+
+            // Function to show warning message
+            function showWarning() {
+                const warningDiv = document.createElement('div');
+                warningDiv.className = 'alert alert-warning';
+                warningDiv.style.position = 'fixed';
+                warningDiv.style.top = '20px';
+                warningDiv.style.left = '50%';
+                warningDiv.style.transform = 'translateX(-50%)';
+                warningDiv.style.zIndex = '1000';
+                warningDiv.style.padding = '20px 40px';
+                warningDiv.style.borderRadius = '10px';
+                warningDiv.style.backgroundColor = '#fff3cd';
+                warningDiv.style.color = '#856404';
+                warningDiv.style.border = '2px solid #ffeeba';
+                warningDiv.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+                warningDiv.style.fontSize = '24px';
+                warningDiv.style.fontWeight = 'bold';
+                warningDiv.style.fontFamily = 'Schoolbell, cursive';
+                warningDiv.style.minWidth = '400px';
+                warningDiv.style.textAlign = 'center';
+                warningDiv.innerHTML = '🐱 Please select an option before proceeding! 🐱';
+                
+                document.body.appendChild(warningDiv);
+                
+                // Add animation
+                warningDiv.style.animation = 'fadeInDown 0.5s ease-out';
+                
+                // Remove warning after 3 seconds with fade out
+                setTimeout(() => {
+                    warningDiv.style.animation = 'fadeOutUp 0.5s ease-in';
+                    setTimeout(() => {
+                        warningDiv.remove();
+                    }, 500);
+                }, 3000);
+            }
 
             // Orange arrow navigation
             const leftArrow = document.querySelector('.left-arrow-btn');
@@ -906,14 +825,18 @@
                     if (currentSlide < slides.length - 1) {
                         showSlide(currentSlide + 1);
                     } else {
-                        // On last slide, submit the form
-                        const form = document.querySelector('.question-content form');
-                        if (form) form.submit();
+                        // On last slide, check if an option is selected before submitting
+                        if (isOptionSelected()) {
+                            const form = document.querySelector('.question-content form');
+                            if (form) form.submit();
+                        } else {
+                            showWarning();
+                        }
                     }
                 });
             }
 
-            // Keyboard navigation (optional, keep as is)
+            // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft' && currentSlide > 0) {
                     showSlide(currentSlide - 1);
@@ -923,8 +846,13 @@
                     if (currentSlide < slides.length - 1) {
                         showSlide(currentSlide + 1);
                     } else if (currentSlide === slides.length - 1) {
-                        const form = document.querySelector('.question-content form');
-                        if (form) form.submit();
+                        // On last slide, check if an option is selected before submitting
+                        if (isOptionSelected()) {
+                            const form = document.querySelector('.question-content form');
+                            if (form) form.submit();
+                        } else {
+                            showWarning();
+                        }
                     }
                 }
             });
