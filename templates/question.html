@@ -51,7 +51,6 @@
                                         "Dearest, <br>
                                         If you are reading this, I, Grandmother Cat, <br> 
                                         have departed to the Great Catnap."
-                                        <br> dm github desktop
                                     </div>
                                     {% elif question.id == 1 and loop.index == 2 %}
                                     <div class="image-text-overlay">
@@ -179,13 +178,13 @@
                     <div class="question-arrow-controls d-flex justify-content-between align-items-center">
                         <a href="{{ url_for('index', action='prev') }}" class="arrow-btn left-arrow-btn">
                             <span
-                                style="font-size: 2rem; background: #f4653b; color: white; border-radius: 25%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">&#8592;</span>
+                                style="font-size: 2rem; background: #f4653b; color: #fcf0e6; border-radius: 25%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">&#8592;</span>
                         </a>
                         <a href="#"
                             onclick="document.querySelector('.question-content form button[type=submit]').click(); return false;"
                             class="arrow-btn right-arrow-btn">
                             <span
-                                style="font-size: 2rem; background: #f4653b; color: white; border-radius: 25%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">&#8594;</span>
+                                style="font-size: 2rem; background: #f4653b; color: #fcf0e6; border-radius: 25%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">&#8594;</span>
                         </a>
                     </div>
                 </div>
@@ -206,20 +205,20 @@
     }
 
     .question-1-container .card {
-        background: rgba(255, 255, 255, 0.9);
+        background: #fcf0e6;
         backdrop-filter: blur(5px);
     }
 
     /* Introduction page styles */
-    .narrative-section.intro {
+    /* .narrative-section.intro {
         padding: 3rem;
         background: linear-gradient(135deg, #FFF9F9 0%, #FFE0E0 100%);
         border-radius: 20px;
         position: relative;
         overflow: hidden;
-    }
+    } */
 
-    .narrative-section.intro::before {
+    /* .narrative-section.intro::before {
         content: "";
         position: absolute;
         top: 0;
@@ -232,7 +231,7 @@
             url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0C17 0 15 2 15 5C15 8 17 10 20 10C23 10 25 8 25 5C25 2 23 0 20 0' fill='rgba(255,107,107,0.05)'/%3E%3C/svg%3E");
         opacity: 0.5;
         z-index: 0;
-    }
+    } */
 
     .narrative-section.intro .narrative-text {
         font-size: 1.2rem;
@@ -242,7 +241,7 @@
         margin-bottom: 2rem;
         position: relative;
         padding: 2.5rem;
-        background: rgba(255, 255, 255, 0.95);
+        background: #fcf0e6;
         border-radius: 15px;
         text-align: left;
         border-left: 4px solid var(--primary-color);
@@ -255,7 +254,7 @@
         top: -15px;
         left: -15px;
         font-size: 2.5rem;
-        background: white;
+        background: #fcf0e6;
         border-radius: 50%;
         padding: 5px;
         z-index: 2;
@@ -345,10 +344,20 @@
 
     /* Existing styles */
     .progress-wrapper {
-        background: white;
+        background: #fcf0e6;
         padding: 1.5rem;
         border-radius: 12px;
         box-shadow: 0 1px 3px rgba(239, 146, 6, 0.895);
+    }
+
+    .progress-wrapper .text-muted {
+        font-size: 1rem;
+    }
+
+    .progress-wrapper .badge {
+        font-size: 1em;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
     }
 
     .options {
@@ -408,7 +417,7 @@
     }
 
     .option input[type="radio"]:focus {
-        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f4653b;
+        box-shadow: 0 0 0 2px #fcf0e6, 0 0 0 4px #f4653b;
     }
 
     .option span {
@@ -429,7 +438,7 @@
     .option input[type="radio"]:checked {
         border-color: #f4653b !important;
         background-color: #f4653b !important;
-        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #FF5252 !important;
+        box-shadow: 0 0 0 2px #fcf0e6, 0 0 0 4px #FF5252 !important;
     }
 
     .option:has(input[type="radio"]:checked) {
@@ -489,7 +498,7 @@
         color: var(--text-color);
         white-space: pre-line;
         padding: 2rem;
-        background: #FFFFFF;
+        background: #fcf0e6;
         border-radius: 15px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         max-width: 800px;
@@ -512,17 +521,16 @@
         border-left: 4px solid var(--primary-color);
         margin: 1.5rem 0;
         padding: 1rem 1.5rem;
-        background: #FFF9F9;
+        background: #fcf0e6;
         border-radius: 0 10px 10px 0;
         font-style: italic;
     }
 
     /* Add some spacing for better content separation */
     .narrative-section {
-        background: #FCF0E6;
-        background: rgba(252, 240, 230, 1);
-        border: 1px solid #634631;
-        border: 1px solid rgba(99, 70, 49, 1);
+        background: #fcf0e6;
+        /* border: 1px solid #634631;
+        border: 1px solid rgba(99, 70, 49, 1);*/
         border-radius: 20px;
         padding: 2rem;
         margin-bottom: 2rem;
@@ -599,7 +607,7 @@
     }
 
     .badge.bg-primary {
-        background-color: #f4653b !important;
+        background-color: #ec7956 !important;
         color: #fff !important;
         border: 1px solid #f4653b;
     }
@@ -628,19 +636,23 @@
         position: relative;
         width: 100%;
         height: auto;
+        /* min-height: 600px; */
         overflow: hidden;
         border-radius: 20px;
-        display: flex;
+        display: flex; /* Keep flex for initial layout, but absolute positioning will override */
         align-items: flex-start;
     }
 
     .visual-novel-slide {
-        position: relative;
+        position: absolute; /* Use absolute positioning to stack slides */
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto;
+        height: 100%;
         opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-        display: none;
+        transition: opacity 1s ease-in-out, visibility 1s ease-in-out; /* Smooth transition for opacity and visibility */
+        visibility: hidden; /* Hide non-active slides */
+        /* display: none; Removing display none */
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
@@ -649,7 +661,9 @@
 
     .visual-novel-slide.active {
         opacity: 1;
-        display: flex;
+        visibility: visible; /* Make active slide visible */
+        position: relative; /* Use relative to allow content flow within the active slide */
+        /* display: flex; Removing display flex as position relative handles layout */
     }
 
     .visual-novel-image {
@@ -674,10 +688,13 @@
         text-align: center;
         padding: 40px 60px;
         box-sizing: border-box;
-        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-        background: url("{{ url_for('static', filename='images/chat_frame.png') }}") no-repeat;
-        background-size: 100% 100%;
-        min-height: 600px;
+        /* text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); */
+        border: 30px solid transparent;
+        border-image-source: url("{{ url_for('static', filename='images/chat_frame_1.png') }}");
+        border-image-slice: 30 0 fill;
+        border-image-width: 0.2;
+        border-image-repeat: stretch;
+        /* min-height: 600px; */
         align-content: center;
         margin-bottom: 20px;
     }
@@ -708,8 +725,11 @@
     }
 
     .question-overlay {
-        background: url("{{ url_for('static', filename='images/chat_frame.png') }}") no-repeat;
-        background-size: 100% 100%;
+        border: 30px solid transparent;
+        border-image-source: url("{{ url_for('static', filename='images/chat_frame_2.png') }}");
+        border-image-slice: 30 0 fill;
+        border-image-width: 0.19;
+        border-image-repeat: stretch;
         box-shadow: none;
     }
 
@@ -736,8 +756,15 @@
         height: auto;
         margin: 0 auto 2rem auto;
         /* Center the image and add space below */
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        /* border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+        animation: logoFloat 3s ease-in-out infinite; /* Apply the gentle float animation */
+    }
+
+    /* Add a gentle float animation for the logo */
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
     }
 </style>
 
