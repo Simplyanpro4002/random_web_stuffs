@@ -251,14 +251,6 @@
     </style>
 </head>
 <body>
-    {% if current_user.is_authenticated %}
-    <div class="signout-button">
-        <a href="{{ url_for('logout') }}" class="btn btn-signout">
-            <i class="fas fa-sign-out-alt"></i>
-            Sign Out
-        </a>
-    </div>
-    {% endif %}
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
