@@ -30,26 +30,6 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <h3 class="card-title mb-4">Your Answers</h3>
-            <div class="answers-list">
-                {% for question in questions %}
-                <div class="answer-item mb-3">
-                    <p><strong>Question {{ question.id }}:</strong> {{ question.text }}</p>
-                    <p><strong>Your answer:</strong> 
-                        {% for option in question.options %}
-                            {% if option[0] == answers[question.id|string] %}
-                                {{ option[1] }}
-                            {% endif %}
-                        {% endfor %}
-                    </p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
     <div class="mt-4 text-center">
         <a href="{{ url_for('index') }}" class="btn btn-primary">Take the Assessment Again</a>
     </div>
@@ -92,15 +72,6 @@
     font-size: 1.1rem;
     font-style: italic;
     color: #495057;
-}
-
-.answer-item {
-    border-bottom: 1px solid #dee2e6;
-    padding-bottom: 1rem;
-}
-
-.answer-item:last-child {
-    border-bottom: none;
 }
 
 .btn-primary {
