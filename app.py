@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import RadioField, SubmitField
 from wtforms.validators import DataRequired
 from models import db, Result
-from forms import RegistrationForm
+from forms import RegistrationForm, DataCollectionForm
 from scoring import calculate_raw_score, calculate_standard_score, get_risk_profile
 from flask_migrate import Migrate
 from questions_temp import QUESTIONS
@@ -41,9 +41,9 @@ If you are reading this, I, Grandmother Cat, have departed to the Great Catnap. 
 You are now on a journey to find out <strong class="black-bold">what kind of investor you are.</strong>'''
     
     if form.validate_on_submit():
-        session['current_question'] = 0
+        session['current_question'] = 1  # Set to 1 to start with the first question
         session['answers'] = {}
-        return redirect(url_for('index'))
+        return redirect(url_for('data_collection'))
         
     return render_template('question.html',
                         question={'id': 0, 'narrative': intro_text, 'question_text': ''},
@@ -51,10 +51,30 @@ You are now on a journey to find out <strong class="black-bold">what kind of inv
                         progress=0,
                         total_questions=len(QUESTIONS))
 
+@app.route('/data-collection', methods=['GET', 'POST'])
+def data_collection():
+    form = DataCollectionForm()
+    
+    if form.validate_on_submit():
+        # Store the collected data in the session
+        session['user_data'] = {
+            'age_group': form.age_group.data,
+            'gender': form.gender.data,
+            'income': form.income.data,
+            'stock_market': form.stock_market.data,
+            'financial_knowledge': form.financial_knowledge.data,
+            'game_version': form.game_version.data
+        }
+        # Set current_question to 0 to start from the first question
+        session['current_question'] = 0
+        return redirect(url_for('index'))
+    
+    return render_template('data_collection.html', form=form)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # If no current question, redirect to introduction
-    if 'current_question' not in session:
+    # If no current question or user data, redirect to introduction
+    if 'current_question' not in session or 'user_data' not in session:
         return redirect(url_for('introduction'))
 
     if request.args.get('action') == 'prev':
@@ -62,8 +82,8 @@ def index():
             session['current_question'] -= 1
             return redirect(url_for('index'))
         else:
-            # If on first question, go back to introduction
-            return redirect(url_for('introduction'))
+            # If on first question, go back to data collection
+            return redirect(url_for('data_collection'))
     
     if session['current_question'] >= len(QUESTIONS):
         return redirect(url_for('results'))
@@ -85,14 +105,19 @@ def index():
         image_paths = []
         i = 1
         while True:
+            # Determine the image directory based on game version
+            image_dir = 'images_dog' if session.get('user_data', {}).get('game_version') == 'dog' else 'images'
+            
             # Construct the full path to the image file
             image_filename = f'image_{i}.png'
-            image_path = os.path.join('static', 'images', f'question_{question["id"]}', image_filename)
+            image_path = os.path.join('static', image_dir, f'question_{question["id"]}', image_filename)
+            
             # Check if the image exists using os.path.exists
             if not os.path.exists(image_path):
                 break
+                
             # If image exists, add its URL path
-            image_paths.append(url_for('static', filename=f'images/question_{question["id"]}/{image_filename}'))
+            image_paths.append(url_for('static', filename=f'{image_dir}/question_{question["id"]}/{image_filename}'))
             i += 1
         question['image_paths'] = image_paths
     
@@ -104,7 +129,7 @@ def index():
 
 @app.route('/results')
 def results():
-    if 'answers' not in session:
+    if 'answers' not in session or 'user_data' not in session:
         return redirect(url_for('index'))
     
     # Calculate scores
@@ -118,7 +143,8 @@ def results():
             answers=session['answers'],
             raw_score=raw_score,
             standard_score=standard_score,
-            risk_group=risk_profile['group']
+            risk_group=risk_profile['group'],
+            user_data=session['user_data']  # Add user data to the result
         )
         db.session.add(result)
         db.session.commit()
@@ -128,6 +154,7 @@ def results():
         db.session.rollback()
     
     answers = session['answers']
+    user_data = session['user_data']
     session.clear()
     return render_template(
         'results.html',
@@ -135,7 +162,8 @@ def results():
         questions=QUESTIONS,
         raw_score=raw_score,
         standard_score=standard_score,
-        risk_profile=risk_profile
+        risk_profile=risk_profile,
+        user_data=user_data
     )
 
 if __name__ == '__main__':

@@ -1,0 +1,267 @@
+    {% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4 black-bold">Tell us about yourself</h2>
+                    <form method="POST" action="{{ url_for('data_collection') }}">
+                        {{ form.csrf_token }}
+                        
+                        <div class="mb-4">
+                            <h5 class="black-bold mb-3">1. What is your age group?</h5>
+                            {% for subfield in form.age_group %}
+                            <div class="form-check custom-radio mb-2">
+                                <div class="d-flex align-items-center">
+                                    {{ subfield(class="form-check-input me-3") }}
+                                    {{ subfield.label(class="form-check-label w-100 p-3 rounded hover-effect") }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="black-bold mb-3">2. What is your gender?</h5>
+                            {% for subfield in form.gender %}
+                            <div class="form-check custom-radio mb-2">
+                                <div class="d-flex align-items-center">
+                                    {{ subfield(class="form-check-input me-3") }}
+                                    {{ subfield.label(class="form-check-label w-100 p-3 rounded hover-effect") }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="black-bold mb-3">3. What is your approximate monthly income?</h5>
+                            {% for subfield in form.income %}
+                            <div class="form-check custom-radio mb-2">
+                                <div class="d-flex align-items-center">
+                                    {{ subfield(class="form-check-input me-3") }}
+                                    {{ subfield.label(class="form-check-label w-100 p-3 rounded hover-effect") }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="black-bold mb-3">4. How actively do you participate in the stock market?</h5>
+                            {% for subfield in form.stock_market %}
+                            <div class="form-check custom-radio mb-2">
+                                <div class="d-flex align-items-center">
+                                    {{ subfield(class="form-check-input me-3") }}
+                                    {{ subfield.label(class="form-check-label w-100 p-3 rounded hover-effect") }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="black-bold mb-3">5. How would you rate your own financial knowledge and literacy?</h5>
+                            {% for subfield in form.financial_knowledge %}
+                            <div class="form-check custom-radio mb-2">
+                                <div class="d-flex align-items-center">
+                                    {{ subfield(class="form-check-input me-3") }}
+                                    {{ subfield.label(class="form-check-label w-100 p-3 rounded hover-effect") }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="black-bold mb-3">6. Which version of the game do you prefer?</h5>
+                            <div class="d-flex flex-column gap-2 align-items-start">
+                                {% for subfield in form.game_version %}
+                                <div class="form-check custom-radio">
+                                    <div class="d-flex align-items-center">
+                                        {{ subfield(class="form-check-input me-3") }}
+                                        {{ subfield.label(class="form-check-label w-100 p-3 rounded hover-effect") }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-5">
+                            <a href="{{ url_for('introduction') }}" class="btn btn-lg" style="background-color: #f4653b; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                            <button type="submit" class="btn btn-lg" style="background-color: #f4653b; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+    :root {
+        --primary-color: #f4653b;
+        --primary-hover: #e55a30;
+        --border-color: #FFE0E0;
+        --text-color: #3a3a3a;
+        --border-color-dark: #3a3a3a;
+    }
+
+    .card {
+        background-color: #fcf0e6;
+        border-radius: 20px;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .card-body {
+        background-color: #fcf0e6;
+    }
+
+    .black-bold {
+        font-weight: 600;
+        color: #333;
+        font-size: 1.2em;
+        font-family: 'Schoolbell', cursive;
+    }
+
+    .form-check-label {
+        font-family: 'Schoolbell', cursive;
+        font-size: 1.1em;
+        color: var(--text-color);
+        transition: all 0.3s ease;
+    }
+
+    .hover-effect:hover {
+        background-color: rgba(244, 101, 59, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .form-check-input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #f4653b;
+        border-radius: 50%;
+        outline: none;
+        background: transparent;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0 0 0 2px transparent, 0 0 0 0 #f4653b;
+    }
+
+    .form-check-input:checked {
+        background: radial-gradient(circle at center, #f4653b 60%, transparent 61%);
+        border-color: #f4653b;
+        box-shadow: 0 0 0 2px transparent, 0 0 0 4px #f4653b;
+    }
+
+    .form-check-input:focus {
+        box-shadow: 0 0 0 2px #fcf0e6, 0 0 0 4px #f4653b;
+    }
+
+    .form-check-input:checked + .form-check-label {
+        background-color: rgba(244, 101, 59, 0.1);
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: var(--primary-hover) !important;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -20px);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    @keyframes fadeOutUp {
+        from {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+        to {
+            opacity: 0;
+            transform: translate(-50%, -20px);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        submitButton.addEventListener('click', function(e) {
+            const radioGroups = form.querySelectorAll('.form-check-input');
+            const selectedGroups = new Set();
+            
+            radioGroups.forEach(radio => {
+                if (radio.checked) {
+                    selectedGroups.add(radio.name);
+                }
+            });
+            
+            if (selectedGroups.size < 6) {
+                e.preventDefault();
+                
+                const warningDiv = document.createElement('div');
+                warningDiv.className = 'alert alert-warning';
+                warningDiv.style.position = 'fixed';
+                warningDiv.style.top = '20px';
+                warningDiv.style.left = '50%';
+                warningDiv.style.transform = 'translateX(-50%)';
+                warningDiv.style.zIndex = '1000';
+                warningDiv.style.padding = '20px 40px';
+                warningDiv.style.borderRadius = '10px';
+                warningDiv.style.backgroundColor = '#fff3cd';
+                warningDiv.style.color = '#856404';
+                warningDiv.style.border = '2px solid #ffeeba';
+                warningDiv.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+                warningDiv.style.fontSize = '24px';
+                warningDiv.style.fontWeight = 'bold';
+                warningDiv.style.fontFamily = 'Schoolbell, cursive';
+                warningDiv.style.minWidth = '400px';
+                warningDiv.style.textAlign = 'center';
+                warningDiv.innerHTML = '🐱 Please answer all questions before proceeding! 🐱';
+                
+                document.body.appendChild(warningDiv);
+                
+                warningDiv.style.animation = 'fadeInDown 0.5s ease-out';
+                
+                setTimeout(() => {
+                    warningDiv.style.animation = 'fadeOutUp 0.5s ease-in';
+                    setTimeout(() => {
+                        warningDiv.remove();
+                    }, 500);
+                }, 3000);
+            }
+        });
+    });
+</script>
+{% endblock %} 
