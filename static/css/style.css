@@ -1,0 +1,60 @@
+.slide-text-content {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    background-image: url('../images/chat_frame.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-image-slice: 30% 30% 30% 30%;
+    border-image-width: 30px;
+    border-image-repeat: stretch;
+    border-image-source: url('../images/chat_frame.svg');
+    border-style: solid;
+    border-width: 30px;
+    box-sizing: border-box;
+    color: #333;
+    font-family: 'Schoolbell', cursive;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+    z-index: 10;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-text-overlay {
+    padding: 15px;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.character-overlay {
+    font-weight: bold;
+    color: #f4653b;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slide-text-content {
+        width: 95%;
+        padding: 15px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-text-content {
+        width: 98%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+} 

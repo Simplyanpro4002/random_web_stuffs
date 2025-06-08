@@ -30,6 +30,23 @@
         </div>
     </div>
 
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-4">Get Your Results via Email</h3>
+            <form action="/send_results_email" method="POST" class="email-form">
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    <label for="email">Email Address (optional):</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address">
+                    <small class="form-text text-muted">We'll send your results to this email address.</small>
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-success">Send Results</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="mt-4 text-center">
         <a href="{{ url_for('index') }}" class="btn btn-primary">Take the Assessment Again</a>
     </div>
@@ -83,6 +100,29 @@
     background-color: #e55a30 !important;
     border-color: #e55a30 !important;
     color: #fff !important;
+}
+
+.email-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+}
+
+.btn-success {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: #fff !important;
+    padding: 0.5rem 2rem;
+}
+
+.btn-success:hover {
+    background-color: #218838 !important;
+    border-color: #1e7e34 !important;
 }
 </style>
 {% endblock %} 

@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_wtf import FlaskForm, CSRFProtect
-from wtforms import RadioField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import RadioField, SubmitField, StringField
+from wtforms.validators import DataRequired, Email, Optional
 from models import db, Result
 from forms import RegistrationForm, DataCollectionForm
 from scoring import calculate_raw_score, calculate_standard_score, get_risk_profile
 from flask_migrate import Migrate
 from questions_temp import QUESTIONS
+from flask_mail import Mail, Message
 import os
 import requests
 
@@ -15,10 +16,19 @@ app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key in
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/risk_assessment.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Email configuration
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')  # Set this in your environment
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')  # Set this in your environment
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_USER')
+
 # Initialize extensions
 csrf = CSRFProtect(app)
 db.init_app(app)
 migrate = Migrate(app, db)
+mail = Mail(app)
 
 # Create tables with the correct schema
 with app.app_context():
@@ -26,11 +36,15 @@ with app.app_context():
     db.create_all()  # Create tables with the new schema
 
 class IntroForm(FlaskForm):
-    submit = SubmitField('Begin Journey')
+    submit = SubmitField('Begin Journey ✨')
 
 class QuestionForm(FlaskForm):
     answer = RadioField('Answer', validators=[DataRequired()])
     submit = SubmitField('Next')
+
+class EmailForm(FlaskForm):
+    email = StringField('Email', validators=[Optional(), Email()])
+    submit = SubmitField('Send Results')
 
 @app.route('/introduction', methods=['GET', 'POST'])
 def introduction():
@@ -137,6 +151,11 @@ def results():
     standard_score = calculate_standard_score(raw_score)
     risk_profile = get_risk_profile(standard_score)
     
+    # Store results in session for email functionality
+    session['raw_score'] = raw_score
+    session['standard_score'] = standard_score
+    session['risk_profile'] = risk_profile
+
     try:
         # Save results to database
         result = Result(
@@ -156,6 +175,10 @@ def results():
     answers = session['answers']
     user_data = session['user_data']
     session.clear()
+
+    # Create form instance for email
+    form = EmailForm()
+
     return render_template(
         'results.html',
         answers=answers,
@@ -163,8 +186,52 @@ def results():
         raw_score=raw_score,
         standard_score=standard_score,
         risk_profile=risk_profile,
+        form=form,
         user_data=user_data
     )
+
+@app.route('/send_results_email', methods=['POST'])
+def send_results_email():
+    # print("hello")
+    email = request.form.get('email')
+    # print(email)
+    # if not email:
+    #     flash('Please provide an email address')
+    #     return redirect(url_for('results'))
+    
+    # Get the results from the session
+    raw_score = session.get('raw_score')
+    standard_score = session.get('standard_score')
+    risk_profile = session.get('risk_profile')
+    
+    # if not all([raw_score, standard_score, risk_profile]):
+    #     flash('Results not found. Please take the assessment again.')
+    #     return redirect(url_for('index'))
+    
+    # Create email content
+    msg = Message(
+        # 'Your Pawfolio Profile Results',
+        recipients=[email],
+        subject='Test Mail from Flask',
+                  sender=app.config['MAIL_USERNAME'],
+                  body='Hello, this is a test email sent from Flask-Mail.'
+    )
+    
+    # Format the email body
+    msg.body = f"""Your Pawfolio Profile Results
+
+
+Thank you for taking the Pawfolio Assessment!
+"""
+    
+    try:
+        mail.send(msg)
+        flash('Results have been sent to your email!')
+    except Exception as e:
+        flash('Failed to send email. Please try again later.')
+        print(f"Email error: {e}")
+    
+    return redirect(url_for('results'))
 
 if __name__ == '__main__':
     app.run(debug=True) 
