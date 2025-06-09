@@ -1,0 +1,107 @@
+                                    {% if question.id == 1 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Grandma Dog</span> <br>
+                                        "Dearest, <br>
+                                        If you are reading this, I, Grandmother Dog, <br>
+                                        have departed to the Forever Park."
+                                    </div>
+                                    {% elif question.id == 1 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Grandma Dog</span> <br>
+                                        "Let me show you my legacy — The 7 Pawfolios that I've crafted for each of my grandpuppies."
+                                    </div>
+                                    {% elif question.id == 1 and loop.index == 3 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Grandma Dog</span> <br>
+                                        "Only the right grandpuppy may claim the one meant for them."
+                                    </div>
+                                    {% elif question.id == 1 and loop.index == 4 %}
+                                    <div class="image-text-overlay">
+                                        It's time to find out what kind of canine you really are
+                                    </div>
+                                    {% elif question.id == 2 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        As you read the next page, an old memory came to your mind...
+                                    </div>
+                                    {% elif question.id == 2 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        There was one time you were fired from your job right before your vacation.
+                                    </div>
+                                    {% elif question.id == 4 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Grandma wrote about a time when rumors spread: real estate would rise, rare jewels gain value, bonds drop—yet government bonds stayed safe.
+                                    </div>
+                                    {% elif question.id == 4 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        Right now, most of your savings are sitting in those high-interest government bonds.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        You continued reading until you reached the very end of Grandma's journal.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        Closing the journal, you are now ready to explore yourself in the world of real investments.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 3 %}
+                                    <div class="image-text-overlay">
+                                        As you look out the window, you see your longtime neighbor.
+                                    </div>
+                                    {% elif question.id == 6 and loop.index == 4 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Neighbor</span> <br>
+                                        "Join my plan and the payout could be huge — 50 to 100 times your investment — but there's only a 20% chance of success."
+                                    </div>
+                                    {% elif question.id == 7 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        The next day, you received $20,000 as the first challenge that Grandma Dog assigned to the grandpuppies in her last will.
+                                    </div>
+                                    {% elif question.id == 8 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        At the market, you bump into an old investor dog, whose is your grandma’s old friend. 
+                                    </div>
+                                    {% elif question.id == 8 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        "How comfy are you with the wild world of stocks?"
+                                    </div>
+                                    {% elif question.id == 9 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        "This is a collection of true tales from the boldest investor dogs."
+                                    </div>
+                                    {% elif question.id == 9 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        "If you had to pick one of these paths, which feels the most like you?"
+                                    </div>
+                                    {% elif question.id == 10 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        After a long day at the market, you returned home. Waiting for you was a delivery package from Grandma's lawyer.
+                                    </div>
+                                    {% elif question.id == 11 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Just as you thought that was everything, you hear a soft "thunk" — a smaller envelope slides out of the package.
+                                    </div>
+                                    {% elif question.id == 12 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        A few days later, you found another letter in your mail box, sent from Grandma's lawyer.
+                                    </div>
+                                    {% elif question.id == 13 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        A few days later, the market shifts.
+                                    </div>
+                                    {% elif question.id == 14 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Your holdings have earned a bonus of $2,000. To process your reward, a service fee must be paid.
+                                    </div>
+                                    {% elif question.id == 15 and loop.index == 1 %}
+                                    <div class="image-text-overlay">
+                                        Finally, your journey leads you to the meeting of the 7 heirs with Grandma's lawyer, who was entrusted by her to assess her heirs.
+                                    </div>
+                                    {% elif question.id == 15 and loop.index == 2 %}
+                                    <div class="image-text-overlay">
+                                        <span class="character-overlay">Lawyer Dog</span> <br>
+                                        "Each of you must make one last choice."
+                                    </div>
+                                    {% endif %}

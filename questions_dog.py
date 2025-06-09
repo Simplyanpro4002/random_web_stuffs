@@ -1,23 +1,23 @@
 # Test questions with proper formatting
-QUESTIONS = [
+QUESTIONS_DOG = [
     {
         'id': 1,
-        'question_text': 'How would your best cat friend describe your approach to risk?',
+        'question_text': 'How would your best dog friend describe your approach to risk?',
         'options': [
             ('a', "A real gambler — you leap before you even check where you'll land."),
-            ('b', "A calculated climber — you study the bookshelf's height before the jump."),
-            ('c', "Cautious — you sniff every corner before you make a move."),
-            ('d', "A total risk avoider — if there's a shadow, you're under the couch.")
+            ('b', "A calculated climber — you study the fence's height before the jump."),
+            ('c', "Cautious — you sniff every hydrant before you make a move."),
+            ('d', "A total risk avoider — if there's a loud noise, you're under the porch.")
         ]
     },
     {
         'id': 2,
-        'question_text': 'What did you do with your Clawibbean vacation plans?',
+        'question_text': 'What did you do with your Bark-bados vacation plans?',
         'options': [
             ('a', "Canceled the trip — survival comes first."),
-            ('b', "Took a more modest trip — something safe but relaxing."),
+            ('b', "Took a more modest trip — something safe but relaxing, like a weekend at the lake."),
             ('c', "Went as scheduled — you earned it, and things will work out."),
-            ('d', "Extended the trip — no job, no stress, time to live your best life")
+            ('d', "Extended the trip — no job, no stress, time to live your best life chasing squirrels.")
         ]
     },
     {
@@ -27,7 +27,7 @@ QUESTIONS = [
             ('a', "Loss — it means giving up what you have."),
             ('b', "Uncertainty — anything could happen."),
             ('c', "Opportunity — it might lead to something better."),
-            ('d', "Thrill — it gets your tail twitching in excitement.")
+            ('d', "Thrill — it gets your tail wagging in excitement.")
         ]
     },
     {
@@ -44,7 +44,7 @@ QUESTIONS = [
         'id': 5,
         'question_text': 'Thinking about how your pawfolio might grow over time, which approach fits your goal best?',
         'options': [
-            ('a', "I want my investments to be calm and steady, even if they don't always catch up with the rising cost of catnip."),
+            ('a', "I want my investments to be calm and steady, even if they don't always catch up with the rising cost of premium kibble."),
             ('b', "I prefer a balance—some growth with modest ups and downs, enough to keep up with inflation."),
             ('c', "I aim for growth that beats inflation, even if it means riding some bigger waves."),
             ('d', "I'm ready to chase the biggest leaps, accepting larger swings for the chance of great rewards.")
@@ -57,15 +57,15 @@ QUESTIONS = [
             ('a', "Nothing — a 20% chance isn't worth losing my fur over."),
             ('b', "A modest sum — maybe a month's salary, just to see."),
             ('c', "A more serious stake — three months' salary if the gut says go."),
-            ('d', "Half a year's salary — big risk, big reward, big tail twitch.")
+            ('d', "Half a year's salary — big risk, big reward, big tail wag.")
         ]
     },
     {
         'id': 7,
         'question_text': 'What do you decide to do with the $20,000?',
         'options': [
-            ('a', "Curl up safely in the bank's Deposit Den — guaranteed protection, slow growth."),
-            ('b', "Place it in stable bonds, like Fishback Bonds — steady, with some interest, fewer surprises."),
+            ('a', "Curl up safely in the bank's Kennel Keep — guaranteed protection, slow growth."),
+            ('b', "Place it in stable bonds, like KibbleCorp Bonds — steady, with some interest, fewer surprises."),
             ('c', "Venture into stocks or mutual funds — riskier, but with the chance to grow much more.")
         ]
     },
@@ -90,12 +90,12 @@ QUESTIONS = [
     },
     {
         'id': 10,
-        'question_text': 'How would you invest your 100,000 inheritance from Grandma Purrl?',
+        'question_text': 'How would you invest your $100,000 inheritance from Grandma Dog?',
         'options': [
-            ('a', "In the Snuggle Bank — a safe savings account or money market fund. Calm, cool, and curl-up secure."),
-            ('b', "In a Balanced Fund Basket — a gentle mix of stocks and bonds. Not too hot, not too cold."),
-            ('c', "In the Claw Street Collection — 15 carefully chosen common stocks. All in on growth."),
-            ('d', "In the Glittering Den — raw goods like gold, silver, and oil. Tangible, volatile, and untamed.")
+            ('a', "In the Cozy Kennel Bank — a safe savings account or money market fund. Calm, cool, and curl-up secure."),
+            ('b', "In a Balanced Fetch Fund Basket — a gentle mix of stocks and bonds. Not too wild, not too tame."),
+            ('c', "In the Main Street Mutts Collection — 15 carefully chosen common stocks. All in on growth."),
+            ('d', "In the Buried Treasure Trove — raw goods like gold, silver, and oil. Tangible, volatile, and untamed.")
         ]
     },
     {
@@ -121,7 +121,7 @@ QUESTIONS = [
         'options': [
             ('a', "Stay the course — no change. Grandma rode storms, and so will I."),
             ('b', "Wait a full year before shifting toward safer nests — things might bounce back."),
-            ('c', "Wait three moons (months), then consider retreating to more padded pawsitions."),
+            ('c', "Wait three moons, then consider retreating to more padded pawsitions."),
             ('d', "Retreat now — shift everything to safe napping nests. No more surprises.")
         ]
     },

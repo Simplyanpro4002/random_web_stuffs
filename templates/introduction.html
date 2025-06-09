@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="question-container p-0 question-1-container">
+    <div class="card">
+        <div class="card-body logo-card">
+            <div class="question-content">
+                <div id="narrative" class="narrative-section active intro">
+                    <img src="{{ url_for('static', filename='/logo.png') }}" alt="Purr-fect Risk Assessment Logo"
+                        class="intro-logo">
+                    <form method="POST" class="mt-4">
+                        {{ form.csrf_token }}
+                        {{ form.submit(class="btn btn-primary", value="Begin Journey") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+    /* Question 1 specific styles */
+    .question-1-container {
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .question-1-container .card {
+        background: transparent;
+        backdrop-filter: blur(5px);
+    }
+
+    .logo-card {
+        background-color: rgba(252, 240, 230, 0.886);
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .narrative-section.intro {
+        cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 24C8 24 14 16 14 10C14 4 18 2 22 2C26 2 30 4 30 10C30 16 24 24 24 24' stroke='%23FF6B6B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") 16 16, auto;
+    }
+
+    .narrative-section.intro .narrative-text {
+        font-family: 'Schoolbell', cursive;
+        letter-spacing: 0.02em;
+    }
+
+    .narrative-section.intro form {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .narrative-section.intro .btn-primary {
+        font-size: 1.1rem;
+        padding: 1rem 2.5rem;
+        background: var(--primary-color);
+        border: none;
+        transition: all 0.1s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .narrative-section.intro .btn-primary::before {
+        content: "🐾";
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .narrative-section.intro .btn-primary:hover {
+        transform: translateY(-3px);
+        padding-left: 3rem;
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        background: var(--primary-hover);
+    }
+
+    .narrative-section.intro .btn-primary:hover::before {
+        left: 15px;
+        opacity: 1;
+    }
+
+    .intro-logo {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto 2rem auto;
+        animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pawFloat {
+        0% {
+            transform: translateY(0) rotate(45deg);
+            opacity: 0.8;
+        }
+        50% {
+            transform: translateY(-10px) rotate(45deg);
+            opacity: 0.4;
+        }
+        100% {
+            transform: translateY(0) rotate(45deg);
+            opacity: 0.8;
+        }
+    }
+
+    :root {
+        --primary-color: #f4653b;
+        --primary-hover: #e55a30;
+        --border-color: #FFE0E0;
+        --text-color: #3a3a3a;
+        --border-color-dark: #3a3a3a;
+    }
+
+    .btn-primary {
+        background-color: #f4653b !important;
+        border-color: #f4653b !important;
+        color: #fff !important;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: #e55a30 !important;
+        border-color: #e55a30 !important;
+        color: #fff !important;
+    }
+</style>
+{% endblock %} 

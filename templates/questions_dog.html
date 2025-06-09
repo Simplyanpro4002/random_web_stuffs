@@ -30,24 +30,24 @@
                                 <div class="slide-text-content">
                                     {% if question.id == 1 and loop.index == 1 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Grandma Cat</span> <br>
+                                        <span class="character-overlay">Grandma Dog</span> <br>
                                         "Dearest, <br>
-                                        If you are reading this, I, Grandmother Cat, <br> 
-                                        have departed to the Great Catnap."
+                                        If you are reading this, I, Grandmother Dog, <br>
+                                        have departed to the Forever Park."
                                     </div>
                                     {% elif question.id == 1 and loop.index == 2 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Grandma Cat</span> <br>
-                                        "Let me show you my legacy — The 7 Pawfolios that I've crafted for each of my grandkittens."
+                                        <span class="character-overlay">Grandma Dog</span> <br>
+                                        "Let me show you my legacy — The 7 Pawfolios that I've crafted for each of my grandpuppies."
                                     </div>
                                     {% elif question.id == 1 and loop.index == 3 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Grandma Cat</span> <br>
-                                        "Only the right grandkitten may claim the one meant for them."
+                                        <span class="character-overlay">Grandma Dog</span> <br>
+                                        "Only the right grandpuppy may claim the one meant for them."
                                     </div>
                                     {% elif question.id == 1 and loop.index == 4 %}
                                     <div class="image-text-overlay">
-                                        It's time to find out what kind of feline you really are
+                                        It's time to find out what kind of canine you really are
                                     </div>
                                     {% elif question.id == 2 and loop.index == 1 %}
                                     <div class="image-text-overlay">
@@ -84,25 +84,25 @@
                                     </div>
                                     {% elif question.id == 7 and loop.index == 1 %}
                                     <div class="image-text-overlay">
-                                        The next day, you received $20,000 as the first challenge that Grandma Cat assigned to the grandkittens in her last will.
+                                        The next day, you received $20,000 as the first challenge that Grandma Dog assigned to the grandpuppies in her last will.
                                     </div>
                                     {% elif question.id == 8 and loop.index == 1 %}
                                     <div class="image-text-overlay">
-                                        At the market, you bump into an old investor cat, whose is your grandma's old friend. 
+                                        At the market, you bump into an old investor dog, whose is your grandma's old friend. 
                                     </div>
                                     {% elif question.id == 8 and loop.index == 2 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        <span class="character-overlay">Old Investor Dog</span> <br>
                                         "How comfy are you with the wild world of stocks?"
                                     </div>
                                     {% elif question.id == 9 and loop.index == 1 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Old Investor Cat</span> <br>
-                                        "This is a collection of true tales from the boldest investor cats."
+                                        <span class="character-overlay">Old Investor Dog</span> <br>
+                                        "This is a collection of true tales from the boldest investor dogs."
                                     </div>
                                     {% elif question.id == 9 and loop.index == 2 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Old Investor Cat</span> <br>
+                                        <span class="character-overlay">Old Investor Dog</span> <br>
                                         "If you had to pick one of these paths, which feels the most like you?"
                                     </div>
                                     {% elif question.id == 10 and loop.index == 1 %}
@@ -131,7 +131,7 @@
                                     </div>
                                     {% elif question.id == 15 and loop.index == 2 %}
                                     <div class="image-text-overlay">
-                                        <span class="character-overlay">Lawyer Cat</span> <br>
+                                        <span class="character-overlay">Lawyer Dog</span> <br>
                                         "Each of you must make one last choice."
                                     </div>
                                     {% endif %}
@@ -283,7 +283,7 @@
     }
 
     .option:has(input[type="radio"]:checked)::after {
-        content: "🐱";
+        content: "🐶";
         position: absolute;
         right: 15px;
         top: 50%;
@@ -398,7 +398,7 @@
         padding: 40px 60px;
         box-sizing: border-box;
         border: 30px solid transparent;
-        border-image-source: url("{{ url_for('static', filename='images/chat_frame_1.png') }}");
+        border-image-source: url("{{ url_for('static', filename='images_dog/chat_frame_1.png') }}");
         border-image-slice: 30 0 fill;
         border-image-width: 0.2;
         border-image-repeat: stretch;
@@ -433,7 +433,7 @@
 
     .question-overlay {
         border: 30px solid transparent;
-        border-image-source: url("{{ url_for('static', filename='images/chat_frame_2.png') }}");
+        border-image-source: url("{{ url_for('static', filename='images_dog/chat_frame_2.png') }}");
         border-image-slice: 30 0 fill;
         border-image-width: 0.19;
         border-image-repeat: stretch;
@@ -497,7 +497,7 @@
                 warningDiv.style.fontFamily = 'Schoolbell, cursive';
                 warningDiv.style.minWidth = '400px';
                 warningDiv.style.textAlign = 'center';
-                warningDiv.innerHTML = '🐱 Please select an option before proceeding! 🐱';
+                warningDiv.innerHTML = '🐶 Please select an option before proceeding! 🐶';
                 
                 document.body.appendChild(warningDiv);
                 
@@ -575,4 +575,4 @@
         }
     });
 </script>
-{% endblock %}
+{% endblock %} 

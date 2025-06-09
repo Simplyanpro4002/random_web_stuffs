@@ -1,0 +1,7 @@
+timestamp,game_version,age_group,gender,income,stock_market,financial_knowledge,raw_score,standard_score,risk_group,question_1_answer,question_2_answer,question_3_answer,question_4_answer,question_5_answer,question_6_answer,question_7_answer,question_8_answer,question_9_answer,question_10_answer,question_11_answer,question_12_answer,question_13_answer,question_14_answer,question_15_answer
+2025-06-10 00:52:37,dog,25+,prefer_not_to_say,3m-5m,once_twice,low,21,15.0,1,c,c,b,b,b,a,a,a,a,a,a,a,a,a,a
+2025-06-10 01:02:06,dog,23-25,prefer_not_to_say,3m-5m,occasionally,moderate,32,42.5,3,c,b,b,b,b,c,b,a,b,c,b,b,a,b,b
+2025-06-10 01:03:39,dog,25+,female,5m-10m,once_twice,low,34,47.5,4,a,b,c,a,b,b,b,c,c,b,c,a,b,a,c
+2025-06-10 01:11:02,cat,21-22,female,10m-20m,once_twice,low,33,45.0,4,c,c,b,b,b,c,b,b,b,b,b,b,c,a,b
+2025-06-10 01:16:05,dog,21-22,female,>20m,occasionally,low,55,100.0,7,a,d,d,d,d,d,c,c,d,d,c,b,d,b,d
+2025-06-10 01:57:22,dog,21-22,female,3m-5m,once_twice,low,32,42.5,3,b,a,c,c,c,c,b,b,c,b,a,a,b,a,b

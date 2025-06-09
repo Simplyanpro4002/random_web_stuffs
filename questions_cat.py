@@ -1,5 +1,5 @@
 # Test questions with proper formatting
-QUESTIONS = [
+QUESTIONS_CAT = [
     {
         'id': 1,
         'question_text': 'How would your best cat friend describe your approach to risk?',

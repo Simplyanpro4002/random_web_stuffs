@@ -2,19 +2,19 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import RadioField, SubmitField, StringField
 from wtforms.validators import DataRequired, Email, Optional
-from models import db, Result
-from forms import RegistrationForm, DataCollectionForm
+from forms import DataCollectionForm
 from scoring import calculate_raw_score, calculate_standard_score, get_risk_profile
-from flask_migrate import Migrate
 from questions_temp import QUESTIONS
+from questions_cat import QUESTIONS_CAT
+from questions_dog import QUESTIONS_DOG
 from flask_mail import Mail, Message
 import os
 import requests
+import csv
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key in production
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/risk_assessment.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Email configuration
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -26,14 +26,7 @@ app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_USER')
 
 # Initialize extensions
 csrf = CSRFProtect(app)
-db.init_app(app)
-migrate = Migrate(app, db)
 mail = Mail(app)
-
-# Create tables with the correct schema
-with app.app_context():
-    db.drop_all()  # Drop all existing tables
-    db.create_all()  # Create tables with the new schema
 
 class IntroForm(FlaskForm):
     submit = SubmitField('Begin Journey')
@@ -46,24 +39,12 @@ class EmailForm(FlaskForm):
     email = StringField('Email', validators=[Optional(), Email()])
     submit = SubmitField('Send Results')
 
-@app.route('/introduction', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def introduction():
-    form = IntroForm()  # Use the simpler form for introduction
-    intro_text = '''You\'ve just received a <strong class="black-bold">paw-sealed letter</strong>. It reads:<br>
-<strong><em>\"Dearest,
-If you are reading this, I, Grandmother Cat, have departed to the Great Catnap. My legacy is too grand for mere pawprints — I\'ve crafted 7 Pawfolios, each for a different kind of feline. But only the right grandkitten may claim the one meant for them. Begin by understanding yourself, you must first remember who you are, before you decide who you might become.\"</em></strong><br>
-You are now on a journey to find out <strong class="black-bold">what kind of investor you are.</strong>'''
-    
+    form = IntroForm()
     if form.validate_on_submit():
-        session['current_question'] = 1  # Set to 1 to start with the first question
-        session['answers'] = {}
         return redirect(url_for('data_collection'))
-        
-    return render_template('question.html',
-                        question={'id': 0, 'narrative': intro_text, 'question_text': ''},
-                        form=form,
-                        progress=0,
-                        total_questions=len(QUESTIONS))
+    return render_template('introduction.html', form=form)
 
 @app.route('/data-collection', methods=['GET', 'POST'])
 def data_collection():
@@ -79,13 +60,14 @@ def data_collection():
             'financial_knowledge': form.financial_knowledge.data,
             'game_version': form.game_version.data
         }
-        # Set current_question to 0 to start from the first question
+        # Initialize answers dictionary and current question
+        session['answers'] = {}
         session['current_question'] = 0
         return redirect(url_for('index'))
     
     return render_template('data_collection.html', form=form)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/questions', methods=['GET', 'POST'])
 def index():
     # If no current question or user data, redirect to introduction
     if 'current_question' not in session or 'user_data' not in session:
@@ -99,10 +81,14 @@ def index():
             # If on first question, go back to data collection
             return redirect(url_for('data_collection'))
     
-    if session['current_question'] >= len(QUESTIONS):
+    # Get the appropriate questions based on game version
+    game_version = session.get('user_data', {}).get('game_version', 'cat')
+    questions = QUESTIONS_DOG if game_version == 'dog' else QUESTIONS_CAT
+    
+    if session['current_question'] >= len(questions):
         return redirect(url_for('results'))
     
-    question = QUESTIONS[session['current_question']]
+    question = questions[session['current_question']]
     form = QuestionForm()
     form.answer.choices = [(choice[0], choice[1]) for choice in question['options']]
     
@@ -120,7 +106,7 @@ def index():
         i = 1
         while True:
             # Determine the image directory based on game version
-            image_dir = 'images_dog' if session.get('user_data', {}).get('game_version') == 'dog' else 'images'
+            image_dir = 'images_dog' if game_version == 'dog' else 'images_cat'
             
             # Construct the full path to the image file
             image_filename = f'image_{i}.png'
@@ -135,11 +121,14 @@ def index():
             i += 1
         question['image_paths'] = image_paths
     
-    return render_template('question.html', 
+    # Use the appropriate template based on game version
+    template = 'questions_dog.html' if game_version == 'dog' else 'questions_cat.html'
+    print(template)
+    return render_template(template, 
                          question=question,
                          form=form,
                          progress=session['current_question'],
-                         total_questions=len(QUESTIONS))
+                         total_questions=len(questions))
 
 @app.route('/results')
 def results():
@@ -157,20 +146,60 @@ def results():
     session['risk_profile'] = risk_profile
 
     try:
-        # Save results to database
-        result = Result(
-            answers=session['answers'],
-            raw_score=raw_score,
-            standard_score=standard_score,
-            risk_group=risk_profile['group'],
-            user_data=session['user_data']  # Add user data to the result
-        )
-        db.session.add(result)
-        db.session.commit()
+        # Create data directory if it doesn't exist
+        data_dir = os.path.join(os.path.dirname(__file__), 'data')
+        os.makedirs(data_dir, exist_ok=True)
+        
+        # Save to CSV file in the data directory
+        csv_filename = os.path.join(data_dir, 'results.csv')
+        file_exists = os.path.exists(csv_filename)
+        
+        with open(csv_filename, 'a', newline='', encoding='utf-8') as csvfile:
+            fieldnames = [
+                'timestamp',
+                'game_version',
+                'age_group',
+                'gender',
+                'income',
+                'stock_market',
+                'financial_knowledge',
+                'raw_score',
+                'standard_score',
+                'risk_group'
+            ]
+            
+            # Add question answer fields
+            for i in range(1, 16):  # Assuming 15 questions
+                fieldnames.append(f'question_{i}_answer')
+            
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            
+            # Write header if file is new
+            if not file_exists:
+                writer.writeheader()
+            
+            # Prepare row data
+            row_data = {
+                'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'game_version': session['user_data'].get('game_version', ''),
+                'age_group': session['user_data'].get('age_group', ''),
+                'gender': session['user_data'].get('gender', ''),
+                'income': session['user_data'].get('income', ''),
+                'stock_market': session['user_data'].get('stock_market', ''),
+                'financial_knowledge': session['user_data'].get('financial_knowledge', ''),
+                'raw_score': raw_score,
+                'standard_score': standard_score,
+                'risk_group': risk_profile['group']
+            }
+            
+            # Add question answers
+            for i in range(1, 16):
+                row_data[f'question_{i}_answer'] = session['answers'].get(str(i), '')
+            
+            writer.writerow(row_data)
+            
     except Exception as e:
-        # If there's an error saving to database, just log it and continue
-        print(f"Error saving results to database: {e}")
-        db.session.rollback()
+        print(f"Error saving results to CSV: {e}")
     
     answers = session['answers']
     user_data = session['user_data']
@@ -187,7 +216,8 @@ def results():
         standard_score=standard_score,
         risk_profile=risk_profile,
         form=form,
-        user_data=user_data
+        user_data=user_data,
+        game_version=user_data.get('game_version', 'cat')  # Add game_version to template context
     )
 
 @app.route('/send_results_email', methods=['POST'])
