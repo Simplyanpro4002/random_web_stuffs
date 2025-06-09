@@ -36,7 +36,7 @@ with app.app_context():
     db.create_all()  # Create tables with the new schema
 
 class IntroForm(FlaskForm):
-    submit = SubmitField('Begin Journey ✨')
+    submit = SubmitField('Begin Journey')
 
 class QuestionForm(FlaskForm):
     answer = RadioField('Answer', validators=[DataRequired()])
