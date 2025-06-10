@@ -242,7 +242,7 @@ def send_results_email():
     msg = Message(
         # 'Your Pawfolio Profile Results',
         recipients=[email],
-        subject='Test Mail from Flask',
+        subject='Your Pawfolio Profile Results!',
                   sender=app.config['MAIL_USERNAME'],
                   body='Hello, this is a test email sent from Flask-Mail.'
     )
