@@ -14,7 +14,7 @@ from questions_temp import QUESTIONS
 from questions_cat import QUESTIONS_CAT
 from questions_dog import QUESTIONS_DOG
 from flask_mail import Mail, Message
-import requests
+
 import csv
 from datetime import datetime
 from flask import render_template_string
