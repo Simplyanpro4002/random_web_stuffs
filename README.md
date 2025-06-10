@@ -16,7 +16,7 @@ python init_db.py
 
 3. Run the application:
 ```bash
-
+python api/app.py
 ```
 
 ## Sample Account
@@ -33,7 +33,8 @@ python init_db.py
 
 ```
 risk-assessment/
-├── app.py              # Main application file
+├── api/
+│   └── app.py        # Main application file
 ├── requirements.txt    # Python dependencies
 └── templates/         # HTML templates
     ├── base.html     # Base template with common elements
@@ -44,8 +45,8 @@ risk-assessment/
 ## Security Note
 
 For production deployment, make sure to:
-1. Change the secret key in `app.py`
+1. Change the secret key in `api/app.py`
 2. Enable HTTPS
 3. Implement proper user session management
 4. Add input validation and sanitization
-5. Configure proper logging python app.py
+5. Configure proper logging
