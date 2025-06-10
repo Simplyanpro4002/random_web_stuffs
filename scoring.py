@@ -45,7 +45,7 @@ def get_risk_profile(standard_score):
     if standard_score < 25:
         return {
             'group': 1,
-            'name': 'The Safety Seeker',
+            'name': 'The Burrower',
             'cat_type': 'Whiskers the Worrier',
             'core_traits': [
                 'Views risk as danger',
@@ -58,7 +58,7 @@ def get_risk_profile(standard_score):
     elif standard_score < 35:
         return {
             'group': 2,
-            'name': 'The Cautious Climber',
+            'name': 'The Box Hugger',
             'cat_type': 'Tabby the Traditionalist',
             'core_traits': [
                 'Dislikes risk, but not to the extreme',
@@ -71,7 +71,7 @@ def get_risk_profile(standard_score):
     elif standard_score < 45:
         return {
             'group': 3,
-            'name': 'The Measured Mouser',
+            'name': 'The Cautious Pouncer',
             'cat_type': 'Simba the Strategist',
             'core_traits': [
                 'Balances caution with growth',
@@ -83,7 +83,7 @@ def get_risk_profile(standard_score):
     elif standard_score < 55:
         return {
             'group': 4,
-            'name': 'The Balanced Beast',
+            'name': 'The Rising Reacher',
             'cat_type': 'Luna the Level-Headed',
             'core_traits': [
                 'Moderate risk-taker',
@@ -95,7 +95,7 @@ def get_risk_profile(standard_score):
     elif standard_score < 65:
         return {
             'group': 5,
-            'name': 'The Opportunistic Observer',
+            'name': 'The Brave Leaper',
             'cat_type': 'Felix the Forecast Feline',
             'core_traits': [
                 'Sees risk as a potential reward',
@@ -107,7 +107,7 @@ def get_risk_profile(standard_score):
     elif standard_score < 75:
         return {
             'group': 6,
-            'name': 'The Bold Beneficiary',
+            'name': 'The Box Rider',
             'cat_type': 'Juno the Jackpot Hunter',
             'core_traits': [
                 'Enjoys high-risk, high-reward scenarios',
@@ -119,7 +119,7 @@ def get_risk_profile(standard_score):
     else:
         return {
             'group': 7,
-            'name': 'The Risk Royalty',
+            'name': 'The Sky Stacker',
             'cat_type': 'Leo the Legendary',
             'core_traits': [
                 'Extreme confidence, thrives on volatility',

@@ -12,6 +12,7 @@ import os
 import requests
 import csv
 from datetime import datetime
+from flask import render_template_string
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key in production
@@ -24,6 +25,7 @@ app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')  # Set this in your e
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')  # Set this in your environment
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_USER')
 
+store_session = {}
 # Initialize extensions
 csrf = CSRFProtect(app)
 mail = Mail(app)
@@ -207,7 +209,10 @@ def results():
 
     # Create form instance for email
     form = EmailForm()
-
+    store_session['raw_score']=raw_score
+    store_session['standard_score']=standard_score
+    store_session['game_version']=user_data.get('game_version', 'cat')
+    store_session['risk_profile']=risk_profile
     return render_template(
         'results.html',
         answers=answers,
@@ -220,6 +225,52 @@ def results():
         game_version=user_data.get('game_version', 'cat')  # Add game_version to template context
     )
 
+# @app.route('/send_results_email', methods=['POST'])
+# def send_results_email():
+#     # print("hello")
+#     email = request.form.get('email')
+#     # print(email)
+#     # if not email:
+#     #     flash('Please provide an email address')
+#     #     return redirect(url_for('results'))
+    
+#     # Get the results from the session
+#     raw_score = calculate_raw_score(session['answers'])
+#     standard_score = calculate_standard_score(raw_score)
+#     risk_profile = get_risk_profile(standard_score)
+
+#     print(raw_score, standard_score, risk_profile)
+    
+#     # if not all([raw_score, standard_score, risk_profile]):
+#     #     flash('Results not found. Please take the assessment again.')
+#     #     return redirect(url_for('index'))
+    
+#     # Create email content
+#     msg = Message(
+#         # 'Your Pawfolio Profile Results',
+#         recipients=[email],
+#         subject='Your Pawfolio Profile Results!',
+#                   sender=app.config['MAIL_USERNAME'],
+#                   body='Hello, this is a test email sent from Flask-Mail.'
+#     )
+    
+#     # Format the email body
+#     msg.body = f"""Your Pawfolio Profile Results
+
+
+#     Thank you for taking the Pawfolio Assessment!
+#     """
+    
+#     try:
+#         mail.send(msg)
+#         flash('Results have been sent to your email!')
+#     except Exception as e:
+#         flash('Failed to send email. Please try again later.')
+#         print(f"Email error: {e}")
+    
+#     return redirect(url_for('results'))
+
+
 @app.route('/send_results_email', methods=['POST'])
 def send_results_email():
     # print("hello")
@@ -230,30 +281,51 @@ def send_results_email():
     #     return redirect(url_for('results'))
     
     # Get the results from the session
-    raw_score = session.get('raw_score')
-    standard_score = session.get('standard_score')
-    risk_profile = session.get('risk_profile')
+    raw_score = store_session['raw_score']
+    print("raw score: ", raw_score)
+    standard_score = store_session['standard_score']
+    print("standard score: ", standard_score)
+    risk_profile = store_session['risk_profile']
+    print("risk profile: ", risk_profile)
+    game_version = store_session['game_version']
+
+    print("game: ",game_version)
     
-    # if not all([raw_score, standard_score, risk_profile]):
-    #     flash('Results not found. Please take the assessment again.')
-    #     return redirect(url_for('index'))
-    
-    # Create email content
+    if not all([email, raw_score, standard_score, risk_profile, game_version]):
+        print("die")
+        flash('Missing data. Please complete the assessment again.')
+        return redirect(url_for('index'))
+
+
+    # Tạo đường dẫn hình ảnh
+    image_url = url_for('static', filename=f'result_page/{game_version}/{risk_profile["group"]}.png', _external=True)
+    print(image_url)
+
+    # Nội dung HTML email
+    html_body = render_template_string(f"""
+    <html>
+        <body>
+            <h2>Your Pawfolio Profile Results</h2>
+            <p>Thank you for taking the Pawfolio Assessment!</p>
+            <ul>
+                <li><strong>Raw Score:</strong> {raw_score}</li>
+                <li><strong>Standard Score:</strong> {standard_score}</li>
+                <li><strong>Risk Profile:</strong> {risk_profile["name"]}</li>
+            </ul>
+            <p>Below is your personalized profile image:</p>
+            <img src="{image_url}" alt="Risk Profile Image" style="max-width: 600px;">
+        </body>
+    </html>
+    """)
+
     msg = Message(
-        # 'Your Pawfolio Profile Results',
-        recipients=[email],
         subject='Your Pawfolio Profile Results!',
-                  sender=app.config['MAIL_USERNAME'],
-                  body='Hello, this is a test email sent from Flask-Mail.'
+        recipients=[email],
+        sender=app.config['MAIL_USERNAME']
     )
-    
-    # Format the email body
-    msg.body = f"""Your Pawfolio Profile Results
+    msg.body = "Please view this email in an HTML-compatible email viewer."
+    msg.html = html_body
 
-
-Thank you for taking the Pawfolio Assessment!
-"""
-    
     try:
         mail.send(msg)
         flash('Results have been sent to your email!')
