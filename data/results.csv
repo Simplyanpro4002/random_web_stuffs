@@ -43,3 +43,7 @@ timestamp,game_version,age_group,gender,income,stock_market,financial_knowledge,
 2025-06-10 14:50:06,dog,18-20,male,3m-5m,occasionally,high,24,22.5,1,a,a,c,a,d,a,b,a,a,a,a,a,a,a,a
 2025-06-10 14:59:36,dog,21-22,male,3m-5m,occasionally,very_low,30,37.5,3,a,a,c,a,d,a,c,a,b,a,a,b,a,b,a
 2025-06-10 15:06:51,dog,25+,male,<3m,none,very_low,22,17.5,1,d,b,b,a,b,b,c,a,b,a,a,a,a,a,a
+2025-06-10 15:22:48,dog,21-22,prefer_not_to_say,10m-20m,regularly,very_high,30,37.5,3,c,b,b,b,a,c,b,b,b,a,c,b,b,a,b
+2025-06-10 16:56:00,dog,23-25,female,>20m,occasionally,very_high,30,37.5,3,a,b,b,c,a,b,a,b,b,b,a,b,b,a,b
+2025-06-10 17:22:47,dog,23-25,female,5m-10m,regularly,high,29,35.0,3,c,b,b,c,b,a,a,c,b,a,a,b,a,b,b
+2025-06-10 17:29:22,dog,21-22,female,<3m,none,low,34,47.5,4,b,c,b,b,b,b,b,b,c,c,a,a,c,b,b
