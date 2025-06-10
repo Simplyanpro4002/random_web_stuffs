@@ -2,26 +2,18 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import RadioField, SubmitField, StringField
 from wtforms.validators import DataRequired, Email, Optional
-import sys
-import os
-
-# Add the parent directory to the Python path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from forms import DataCollectionForm
 from scoring import calculate_raw_score, calculate_standard_score, get_risk_profile
 from questions_temp import QUESTIONS
 from questions_cat import QUESTIONS_CAT
 from questions_dog import QUESTIONS_DOG
 from flask_mail import Mail, Message
-
+import os
 import csv
 from datetime import datetime
 from flask import render_template_string
 
-app = Flask(__name__, 
-            template_folder=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates'),
-            static_folder=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static'))
+app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key in production
 
 # Email configuration
