@@ -4,7 +4,6 @@ from wtforms import RadioField, SubmitField, StringField
 from wtforms.validators import DataRequired, Email, Optional
 from forms import DataCollectionForm
 from scoring import calculate_raw_score, calculate_standard_score, get_risk_profile
-from questions_temp import QUESTIONS
 from questions_cat import QUESTIONS_CAT
 from questions_dog import QUESTIONS_DOG
 from flask_mail import Mail, Message
@@ -215,7 +214,6 @@ def results():
     return render_template(
         'results.html',
         answers=answers,
-        questions=QUESTIONS,
         raw_score=raw_score,
         standard_score=standard_score,
         risk_profile=risk_profile,

@@ -50,3 +50,4 @@ timestamp,game_version,age_group,gender,income,stock_market,financial_knowledge,
 2025-06-11 10:27:20,dog,25+,prefer_not_to_say,>20m,actively,high,35,50.0,4,b,c,b,b,a,c,b,b,c,b,b,b,b,b,b
 2025-06-11 11:13:22,cat,18-20,prefer_not_to_say,10m-20m,occasionally,very_low,45,75.0,7,a,b,d,c,d,a,c,c,a,d,b,b,d,b,d
 2025-06-11 11:25:12,dog,18-20,male,<3m,once_twice,moderate,37,55.00000000000001,5,b,c,b,c,b,c,b,b,b,c,b,b,b,b,b
+2025-06-11 22:50:46,dog,23-25,male,10m-20m,occasionally,very_low,38,57.49999999999999,5,b,b,b,c,b,b,c,b,b,d,b,b,c,b,b
