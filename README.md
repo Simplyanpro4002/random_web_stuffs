@@ -1,4 +1,4 @@
-#PAWFOLIO PROFILER: YOUR RISK PURRSONALITY REVIEW!
+PAWFOLIO PROFILER: YOUR RISK PURRSONALITY REVIEW!
 
 ## Setup Instructions
 
@@ -8,7 +8,6 @@
 ```bash
 pip install -r requirements.txt
 ```
-
 3. Run the application:
 ```bash
 python app.py
